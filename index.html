@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Razorpay Payment Checkout SDK -->
+    <!-- Razorpay Payment SDK -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     
     <style>
@@ -111,6 +111,7 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             cursor: pointer;
+            border: none;
         }
 
         .btn-register-nav {
@@ -140,7 +141,7 @@
         .hero {
             position: relative;
             background: linear-gradient(135deg, #FAF5FF 0%, #F3E8FF 100%);
-            padding: 5rem 5% 4rem;
+            padding: 4rem 5% 3rem;
             text-align: center;
             border-bottom: 1px solid var(--border-color);
         }
@@ -249,20 +250,20 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             cursor: pointer;
+            border: none;
         }
 
-        /* Running Photo Motion Carousel between Hero and About */
+        /* Running Photo Carousel between Hero and About */
         .middle-carousel-container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1100px;
             height: 380px;
-            margin: -2rem auto 3rem;
+            margin: 2rem auto;
             position: relative;
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
             border: 4px solid #FFFFFF;
-            z-index: 10;
         }
 
         .carousel-slide {
@@ -287,12 +288,26 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
+            background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.3) 100%);
         }
 
-        /* Section Commons */
+        /* View Section Controller */
+        .view-section {
+            display: none;
+        }
+
+        .view-section.active-view {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         section {
-            padding: 4rem 5%;
+            padding: 3rem 5%;
             max-width: 1100px;
             margin: 0 auto;
         }
@@ -313,14 +328,14 @@
         .section-subtitle {
             text-align: center;
             color: var(--text-muted);
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             max-width: 650px;
             margin-left: auto;
             margin-right: auto;
             font-size: 1.1rem;
         }
 
-        /* About Section */
+        /* About Card */
         .about-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -329,22 +344,7 @@
             line-height: 1.9;
             color: #334155;
             font-size: 1.2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-        }
-
-        /* Dynamic View Section Navigation */
-        .view-section {
-            display: none;
-        }
-
-        .view-section.active-view {
-            display: block;
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
         }
 
         /* Benefits Grid */
@@ -352,7 +352,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 20px;
-            margin-top: 3rem;
+            margin-top: 2.5rem;
         }
 
         .benefit-card {
@@ -382,13 +382,13 @@
             font-weight: 700;
         }
 
-        /* Form Styling */
+        /* Form Container */
         .form-container {
             background: #FFFFFF;
             border: 1px solid var(--border-color);
             padding: 3rem;
             border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.04);
         }
 
         .form-grid {
@@ -459,7 +459,7 @@
             transform: scale(1.02);
         }
 
-        /* Prizes Box */
+        /* Cash Prize Box */
         .prize-box {
             background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
             border: 2px solid var(--accent-gold);
@@ -510,10 +510,10 @@
         }
 
         @media(max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
+            .hero-title { font-size: 2.4rem; }
             .nav-btns { display: none; }
             .section-title { font-size: 2rem; }
-            .middle-carousel-container { height: 240px; margin-top: 1rem; }
+            .middle-carousel-container { height: 230px; }
             .form-container { padding: 1.5rem; }
         }
     </style>
@@ -573,7 +573,7 @@
             </div>
         </header>
 
-        <!-- Dynamic Running Photo Motion Carousel (Positioned between Hero & About) -->
+        <!-- Moving Motion Carousel (Positioned between Hero & About) -->
         <div class="middle-carousel-container">
             <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?q=80&w=1600&auto=format&fit=crop');"></div>
             <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=1600&auto=format&fit=crop');"></div>
@@ -593,7 +593,7 @@
                 <div class="benefit-card"><i class="fa-solid fa-shirt"></i><h4>Official T-Shirt</h4></div>
                 <div class="benefit-card"><i class="fa-solid fa-award"></i><h4>Finisher Medal</h4></div>
                 <div class="benefit-card"><i class="fa-solid fa-file-certificate"></i><h4>Certificate</h4></div>
-                <div class="benefit-card"><i class="fa-solid fa-bowl-food"></i><h4>Food & Drinks</h4></div>
+                <div class="benefit-card"><i class="fa-solid fa-bowl-food"></i><h4>Food & Refreshments</h4></div>
                 <div class="benefit-card"><i class="fa-solid fa-kit-medical"></i><h4>Medical Support</h4></div>
             </div>
         </section>
@@ -603,18 +603,18 @@
     <div id="registerView" class="view-section">
         <section>
             <h2 class="section-title">Online <span>Registration</span></h2>
-            <p class="section-subtitle">Enter your details below. Your official category and fee will be calculated & locked automatically based on your age on Nov 15, 2026.</p>
+            <p class="section-subtitle">Enter your details below. Eligible categories will filter automatically based on your age and gender.</p>
 
             <div class="form-container">
                 <form id="marathonForm" class="form-grid">
                     <div class="form-group">
                         <label>Full Name *</label>
-            <input type="text" id="fullName" class="form-control" required placeholder="Enter your full name">
-                    </div>
+                        <input type="text" id="fullName" class="form-control" required placehol
+                            </div>
 
                     <div class="form-group">
                         <label>Gender *</label>
-                        <select id="gender" class="form-control" required>
+                        <select id="gender" class="form-control" required onchange="filterCategories()">
                             <option value="">Select Gender</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -623,7 +623,14 @@
 
                     <div class="form-group">
                         <label>Date of Birth *</label>
-                        <input type="date" id="dobInput" class="form-control" required onchange="calculateCategory()">
+                        <input type="date" id="dobInput" class="form-control" required onchange="filterCategories()">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Category *</label>
+                        <select id="categorySelect" class="form-control" required onchange="updateFee()">
+                            <option value="">Select Gender & DOB First</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -631,8 +638,11 @@
                         <select id="tshirtSize" class="form-control" required>
                             <option value="">Select T-Shirt Size</option>
                             <option value="24">24 (Kids)</option>
+                            <option value="26">26 (Kids)</option>
                             <option value="28">28 (Kids)</option>
+                            <option value="30">30 (Kids)</option>
                             <option value="32">32 (Kids)</option>
+                            <option value="34">34 (Kids)</option>
                             <option value="S">S</option>
                             <option value="M">M</option>
                             <option value="L">L</option>
@@ -664,8 +674,8 @@
 
                     <div class="form-group" style="grid-column: 1 / -1;">
                         <div class="category-locked-box">
-                            <h3 id="categoryTitle">Please Select Date of Birth</h3>
-                            <p id="categoryFee">Official category & fee will be locked automatically</p>
+                            <h3 id="categoryTitle">Category Fee Status</h3>
+                            <p id="categoryFee">Select DOB, Gender & Category above</p>
                         </div>
                     </div>
 
@@ -709,21 +719,19 @@
         <p>Organized by <strong>Pasumai Ingarangal</strong> © 2026. All Rights Reserved.</p>
     </footer>
 
-    <!-- All-In-One Script -->
+    <!-- All-In-One Script Logic -->
     <script>
-        // Multi-Page Section Switching Logic
+        // Multi-Page Section Switcher
         function switchView(viewName) {
             document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active-view'));
-            
             if (viewName === 'home') document.getElementById('homeView').classList.add('active-view');
             else if (viewName === 'register') document.getElementById('registerView').classList.add('active-view');
             else if (viewName === 'prizes') document.getElementById('prizesView').classList.add('active-view');
             else if (viewName === 'venue') document.getElementById('venueView').classList.add('active-view');
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Carousel Logic
+        // Carousel Animation
         const slides = document.querySelectorAll('.carousel-slide');
         let currentSlide = 0;
         setInterval(() => {
@@ -745,13 +753,18 @@
             }
         }, 1000);
 
-        // Auto Category & Fee Lock
-        let selectedCategoryName = "";
+        // Global Fee Variable
         let selectedFeeAmount = 0;
 
-        function calculateCategory() {
+        // Smart Category Filter based on exact DOB & Gender
+        function filterCategories() {
             const dobValue = document.getElementById('dobInput').value;
-            if (!dobValue) return;
+            const gender = document.getElementById('gender').value;
+            const categorySelect = document.getElementById('categorySelect');
+
+            categorySelect.innerHTML = '<option value="">Select Category</option>';
+
+            if (!dobValue || !gender) return;
 
             const dob = new Date(dobValue);
             const targetDate = new Date('2026-11-15');
@@ -759,30 +772,81 @@
             const monthDiff = targetDate.getMonth() - dob.getMonth();
             if (monthDiff < 0 || (monthDiff === 0 && targetDate.getDate() < dob.getDate())) age--;
 
-            if (age < 12) { selectedCategoryName = "Kids Category (Under 12)"; selectedFeeAmount = 400; }
-            else if (age <= 18) { selectedCategoryName = "Student Run (12 to 18 Yrs)"; selectedFeeAmount = 400; }
-            else if (age <= 45) { selectedCategoryName = "Open Category (19 to 45 Yrs)"; selectedFeeAmount = 450; }
-            else { selectedCategoryName = "Veterans Category (46+ Yrs)"; selectedFeeAmount = 500; }
+            let options = [];
 
-            document.getElementById('categoryTitle').innerText = "Category: " + selectedCategoryName;
-            document.getElementById('categoryFee').innerText = "Locked Fee Amount: ₹" + selectedFeeAmount + "/-";
+            // Kids Categories
+            if (age >= 3 && age <= 8) {
+                options.push({ text: `1 KM Kids (${gender}) - ₹400`, fee: 400 });
+            } else if (age > 8 && age <= 10) {
+                options.push({ text: `2 KM Kids (${gender}) - ₹400`, fee: 400 });
+            } else if (age > 10 && age <= 12) {
+                options.push({ text: `3 KM Kids (${gender}) - ₹400`, fee: 400 });
+            } else if (age > 12 && age <= 14) {
+                options.push({ text: `4 KM Kids (${gender}) - ₹400`, fee: 400 });
+            }
+
+            // Adult / Senior Categories
+            if (gender === 'Male') {
+                if (age >= 15) {
+                    options.push({ text: "8 KM 15+ Men - ₹450", fee: 450 });
+                    options.push({ text: "16 KM Open Men - ₹500", fee: 500 });
+                }
+                if (age >= 45) {
+                    options.push({ text: "8 KM 45+ Men - ₹500", fee: 500 });
+                }
+            } else if (gender === 'Female') {
+                if (age >= 15) {
+                    options.push({ text: "8 KM Open Women - ₹500", fee: 500 });
+                    options.push({ text: "16 KM Open Women - ₹500", fee: 500 });
+                }
+                if (age >= 40) {
+                    options.push({ text: "8 KM 40+ Women - ₹500", fee: 500 });
+                }
+            }
+
+            options.forEach(opt => {
+                let el = document.createElement('option');
+                el.value = opt.fee;
+                el.textContent = opt.text;
+                categorySelect.appendChild(el);
+            });
+
+            if(options.length === 0) {
+                let el = document.createElement('option');
+                el.textContent = "No eligible category found for this age/gender";
+                categorySelect.appendChild(el);
+            }
         }
 
-        // Razorpay Payment Integration (Using Live Key ID)
+        function updateFee() {
+            const categorySelect = document.getElementById('categorySelect');
+            selectedFeeAmount = parseInt(categorySelect.value) || 0;
+            const selectedText = categorySelect.options[categorySelect.selectedIndex].text;
+
+            if (selectedFeeAmount > 0) {
+                document.getElementById('categoryTitle').innerText = "Selected Category: " + selectedText.split(' - ')[0];
+                document.getElementById('categoryFee').innerText = "Registration Fee: ₹" + selectedFeeAmount + "/-";
+            } else {
+                document.getElementById('categoryTitle').innerText = "Category Fee Status";
+                document.getElementById('categoryFee').innerText = "Select DOB, Gender & Category above";
+            }
+        }
+
+        // Razorpay Integration
         document.getElementById('marathonForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            if (!selectedFeeAmount) { alert("Please select Date of Birth first!"); return; }
+            if (!selectedFeeAmount) { alert("Please select a valid Category first!"); return; }
 
             const name = document.getElementById('fullName').value;
             const email = document.getElementById('email').value;
             const mobile = document.getElementById('mobile').value;
 
             var options = {
-                "key": "rzp_live_Tck0CfQHjRBsYh", // Live Key ID Integrated
+                "key": "rzp_live_Tck0CfQHjRBsYh", // Live Key Integrated
                 "amount": selectedFeeAmount * 100,
                 "currency": "INR",
                 "name": "GREEN LIFE MARATHON 2026",
-                "description": "Registration Fee - " + selectedCategoryName,
+                "description": "Registration Fee Payment",
                 "handler": function (response) {
                     alert("Registration & Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
                 },
@@ -795,4 +859,4 @@
         });
     </script>
 </body>
-    </html>
+</html>
