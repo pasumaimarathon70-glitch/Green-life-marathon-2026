@@ -90,6 +90,7 @@
             font-weight: 900;
             color: var(--primary-purple);
             text-decoration: none;
+            cursor: pointer;
         }
 
         .nav-logo i {
@@ -253,7 +254,7 @@
             border: none;
         }
 
-        /* Running Photo Carousel between Hero and About */
+        /* Moving Motion Carousel between Hero & About */
         .middle-carousel-container {
             width: 100%;
             max-width: 1100px;
@@ -510,11 +511,12 @@
         }
 
         @media(max-width: 768px) {
-            .hero-title { font-size: 2.4rem; }
-            .nav-btns { display: none; }
-            .section-title { font-size: 2rem; }
-            .middle-carousel-container { height: 230px; }
-            .form-container { padding: 1.5rem; }
+            .hero-title { font-size: 2.2rem; }
+            .nav-btns { display: flex; gap: 5px; }
+            .btn-nav { padding: 6px 10px; font-size: 0.7rem; }
+            .section-title { font-size: 1.8rem; }
+            .middle-carousel-container { height: 220px; }
+            .form-container { padding: 1.2rem; }
         }
     </style>
 </head>
@@ -525,7 +527,7 @@
         <div class="ticker">
             <div class="ticker-item">🏃‍♂️ GREEN LIFE MARATHON 2026 - CHILDREN'S DAY SPECIAL EDITION</div>
             <div class="ticker-item">🌱 RUN FOR A GREENER TOMORROW</div>
-            <div class="ticker-item">🏆 TOTAL CASH PRIZE ₹1.5 Lakhs/-</div>
+            <div class="ticker-item">🏆 TOTAL CASH PRIZE ₹1,50,000/-</div>
             <div class="ticker-item">📍 VENUE: THIRUMURUGHAN POONDI, TIRUPUR</div>
             <div class="ticker-item">🏃‍♂️ GREEN LIFE MARATHON 2026 - CHILDREN'S DAY SPECIAL EDITION</div>
         </div>
@@ -533,13 +535,13 @@
 
     <!-- Sticky Header Navbar -->
     <nav class="navbar">
-        <a href="javascript:void(0)" onclick="switchView('home')" class="nav-logo">
+        <div onclick="switchView('home')" class="nav-logo">
             <i class="fa-solid fa-leaf"></i> Pasumai Ingarangal
-        </a>
+        </div>
         <div class="nav-btns">
-            <button onclick="switchView('register')" class="btn-nav btn-register-nav">REGISTER NOW</button>
-            <button onclick="switchView('prizes')" class="btn-nav btn-price-nav">CASH PRIZES</button>
-            <button onclick="switchView('venue')" class="btn-nav btn-venue-nav">LOCATION / VENUE</button>
+            <button onclick="switchView('register')" class="btn-nav btn-register-nav">REGISTER</button>
+            <button onclick="switchView('prizes')" class="btn-nav btn-price-nav">PRIZES</button>
+            <button onclick="switchView('venue')" class="btn-nav btn-venue-nav">VENUE</button>
         </div>
     </nav>
 
@@ -573,7 +575,7 @@
             </div>
         </header>
 
-        <!-- Moving Motion Carousel (Positioned between Hero & About) -->
+        <!-- Dynamic Running Carousel (Positioned between Hero & About) -->
         <div class="middle-carousel-container">
             <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?q=80&w=1600&auto=format&fit=crop');"></div>
             <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=1600&auto=format&fit=crop');"></div>
@@ -609,8 +611,8 @@
                 <form id="marathonForm" class="form-grid">
                     <div class="form-group">
                         <label>Full Name *</label>
-                        <input type="text" id="fullName" class="form-control" required placehol
-                            </div>
+                         <input type="text" id="fullName" class="form-control" required placeholder="Enter your full name">
+                    </div>
 
                     <div class="form-group">
                         <label>Gender *</label>
@@ -692,7 +694,7 @@
             <div class="prize-box">
                 <i class="fa-solid fa-trophy" style="font-size: 3.5rem; color: var(--accent-gold);"></i>
                 <p style="text-transform: uppercase; letter-spacing: 2px; font-weight: 800; margin-top: 1rem;">Total Cash Prize Pool</p>
-                <div class="prize-amount">₹1.5 Lakh/-</div>
+                <div class="prize-amount">₹1,50,000/-</div>
                 <p style="color: var(--text-muted); font-size: 1.1rem;">* Category-wise individual cash prize breakdowns will be announced shortly.</p>
             </div>
         </section>
@@ -721,30 +723,37 @@
 
     <!-- All-In-One Script Logic -->
     <script>
-        // Multi-Page Section Switcher
+        // Multi-Page Navigation Switcher
         function switchView(viewName) {
-            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active-view'));
+            var sections = document.querySelectorAll('.view-section');
+            for(var i = 0; i < sections.length; i++) {
+                sections[i].classList.remove('active-view');
+            }
+
             if (viewName === 'home') document.getElementById('homeView').classList.add('active-view');
             else if (viewName === 'register') document.getElementById('registerView').classList.add('active-view');
             else if (viewName === 'prizes') document.getElementById('prizesView').classList.add('active-view');
             else if (viewName === 'venue') document.getElementById('venueView').classList.add('active-view');
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Carousel Animation
-        const slides = document.querySelectorAll('.carousel-slide');
-        let currentSlide = 0;
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 4000);
+        // Carousel Logic
+        var slides = document.querySelectorAll('.carousel-slide');
+        var currentSlide = 0;
+        if(slides.length > 0) {
+            setInterval(function() {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 4000);
+        }
 
-        // Countdown Timer Logic
-        const eventDate = new Date('November 15, 2026 05:30:00').getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const difference = eventDate - now;
+        // Countdown Timer
+        var eventDate = new Date('November 15, 2026 05:30:00').getTime();
+        setInterval(function() {
+            var now = new Date().getTime();
+            var difference = eventDate - now;
             if (difference > 0) {
                 document.getElementById('days').innerText = Math.floor(difference / (1000 * 60 * 60 * 24));
                 document.getElementById('hours').innerText = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -753,76 +762,55 @@
             }
         }, 1000);
 
-        // Global Fee Variable
-        let selectedFeeAmount = 0;
+        // Dynamic Category Filter
+        var selectedFeeAmount = 0;
 
-        // Smart Category Filter based on exact DOB & Gender
         function filterCategories() {
-            const dobValue = document.getElementById('dobInput').value;
-            const gender = document.getElementById('gender').value;
-            const categorySelect = document.getElementById('categorySelect');
+            var dobValue = document.getElementById('dobInput').value;
+            var gender = document.getElementById('gender').value;
+            var categorySelect = document.getElementById('categorySelect');
 
             categorySelect.innerHTML = '<option value="">Select Category</option>';
 
             if (!dobValue || !gender) return;
 
-            const dob = new Date(dobValue);
-            const targetDate = new Date('2026-11-15');
-            let age = targetDate.getFullYear() - dob.getFullYear();
-            const monthDiff = targetDate.getMonth() - dob.getMonth();
+            var dob = new Date(dobValue);
+            var targetDate = new Date('2026-11-15');
+            var age = targetDate.getFullYear() - dob.getFullYear();
+            var monthDiff = targetDate.getMonth() - dob.getMonth();
             if (monthDiff < 0 || (monthDiff === 0 && targetDate.getDate() < dob.getDate())) age--;
 
-            let options = [];
+            var options = [];
 
-            // Kids Categories
             if (age >= 3 && age <= 8) {
-                options.push({ text: `1 KM Kids (${gender}) - ₹400`, fee: 400 });
+                options.push({ text: "1 KM Kids (" + gender + ") - ₹400", fee: 400 });
             } else if (age > 8 && age <= 10) {
-                options.push({ text: `2 KM Kids (${gender}) - ₹400`, fee: 400 });
+                options.push({ text: "2 KM Kids (" + gender + ") - ₹400", fee: 400 });
             } else if (age > 10 && age <= 12) {
-                options.push({ text: `3 KM Kids (${gender}) - ₹400`, fee: 400 });
+                options.push({ text: "3 KM Kids (" + gender + ") - ₹400", fee: 400 });
             } else if (age > 12 && age <= 14) {
-                options.push({ text: `4 KM Kids (${gender}) - ₹400`, fee: 400 });
+                options.push({ text: "4 KM Kids (" + gender + ") - ₹400", fee: 400 });
             }
-
-            // Adult / Senior Categories
-            if (gender === 'Male') {
-                if (age >= 15) {
-                    options.push({ text: "8 KM 15+ Men - ₹450", fee: 450 });
-                    options.push({ text: "16 KM Open Men - ₹500", fee: 500 });
-                }
-                if (age >= 45) {
-                    options.push({ text: "8 KM 45+ Men - ₹500", fee: 500 });
-                }
-                options.push({ text: "16 KM Open Men - ₹500", fee: 500 });
-            }
-            } else if (gender === 'Female') {
-                if (age >= 15) {
-                    options.push({ text: "8 KM Open Women - ₹500", fee: 500 });
-                    
-                if (age >= 40) {
-                    options.push({ text: "8 KM 40+ Women - ₹500", fee: 500 });
-                }
-            }
-
-            options.forEach(opt => {
-                let el = document.createElement('option');
-                el.value = opt.fee;
-                el.textContent = opt.text;
-                categorySelect.appendChild(el);
-            });
-
-            if(options.length === 0) {
-                let el = document.createElement('option');
-                el.textContent = "No eligible category found for this age/gender";
-                categorySelect.appendChild(el);
-            }
-        }
-
+    if (gender === 'Male') {
+    if (age >= 15 && age < 45) {
+        options.push({ text: "8 KM 15+ Men - ₹450", fee: 450 });
+        options.push({ text: "16 KM Open Men - ₹500", fee: 500 });
+    } else if (age >= 45) {
+        options.push({ text: "8 KM 45+ Men - ₹500", fee: 500 });
+        options.push({ text: "16 KM Open Men - ₹500", fee: 500 });
+    }
+  } else if (gender === 'Female') {
+    if (age >= 15 && age < 40) {
+        options.push({ text: "8 KM Open Women - ₹500", fee: 500 });
+    } else if (age >= 40) {
+        options.push({ text: "8 KM 40+ Women - ₹500", fee: 500 });
+    }
+     }
+            
         function updateFee() {
-            const categorySelect = document.getElementById('categorySelect');
+            var categorySelect = document.getElementById('categorySelect');
             selectedFeeAmount = parseInt(categorySelect.value) || 0;
-            const selectedText = categorySelect.options[categorySelect.selectedIndex].text;
+            var selectedText = categorySelect.options[categorySelect.selectedIndex].text;
 
             if (selectedFeeAmount > 0) {
                 document.getElementById('categoryTitle').innerText = "Selected Category: " + selectedText.split(' - ')[0];
@@ -833,17 +821,17 @@
             }
         }
 
-        // Razorpay Integration
+        // Razorpay Payment Integration
         document.getElementById('marathonForm').addEventListener('submit', function(e) {
             e.preventDefault();
             if (!selectedFeeAmount) { alert("Please select a valid Category first!"); return; }
 
-            const name = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
-            const mobile = document.getElementById('mobile').value;
+            var name = document.getElementById('fullName').value;
+            var email = document.getElementById('email').value;
+            var mobile = document.getElementById('mobile').value;
 
             var options = {
-                "key": "rzp_live_Tck0CfQHjRBsYh", // Live Key Integrated
+                "key": "rzp_live_Tck0CfQHjRBsYh",
                 "amount": selectedFeeAmount * 100,
                 "currency": "INR",
                 "name": "GREEN LIFE MARATHON 2026",
