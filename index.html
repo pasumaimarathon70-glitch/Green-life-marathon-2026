@@ -13,14 +13,14 @@
     
     <style>
         :root {
-            --bg-dark: #0A1A12;
-            --bg-card: #12281D;
-            --primary-emerald: #00E676;
-            --accent-gold: #FFD700;
-            --text-white: #FFFFFF;
-            --text-muted: #94A3B8;
-            --glass-bg: rgba(18, 40, 29, 0.85);
-            --border-glow: rgba(0, 230, 118, 0.3);
+            --bg-light: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --primary-purple: #6B21A8;
+            --accent-gold: #D97706;
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            --border-color: #E2E8F0;
+            --brand-green: #16A34A;
         }
 
         * {
@@ -32,8 +32,8 @@
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-white);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             overflow-x: hidden;
             line-height: 1.6;
         }
@@ -41,11 +41,11 @@
         /* Animated Ticker Tape */
         .ticker-wrap {
             width: 100%;
-            background: linear-gradient(90deg, #052e16, #00E676, #052e16);
-            color: #000;
+            background: linear-gradient(90deg, #581C87, #7E22CE, #581C87);
+            color: #FFFFFF;
             font-weight: 800;
             font-size: 0.9rem;
-            padding: 8px 0;
+            padding: 10px 0;
             overflow: hidden;
             position: relative;
             z-index: 1001;
@@ -73,9 +73,8 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-glow);
+            background: #FFFFFF;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
             padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
@@ -89,12 +88,12 @@
             font-family: 'Outfit', sans-serif;
             font-size: 1.3rem;
             font-weight: 900;
-            color: var(--text-white);
+            color: var(--primary-purple);
             text-decoration: none;
         }
 
         .nav-logo i {
-            color: var(--primary-emerald);
+            color: var(--brand-green);
             font-size: 1.6rem;
         }
 
@@ -104,31 +103,32 @@
         }
 
         .btn-nav {
-            padding: 8px 18px;
+            padding: 10px 20px;
             border-radius: 50px;
             font-weight: 700;
             font-size: 0.85rem;
             text-decoration: none;
             transition: all 0.3s ease;
             text-transform: uppercase;
+            cursor: pointer;
         }
 
-        .btn-register {
-            background: var(--primary-emerald);
-            color: #000;
-            box-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+        .btn-register-nav {
+            background: var(--primary-purple);
+            color: #FFFFFF;
+            box-shadow: 0 4px 15px rgba(107, 33, 168, 0.3);
         }
 
-        .btn-price {
-            background: transparent;
+        .btn-price-nav {
+            background: #FEF3C7;
             color: var(--accent-gold);
             border: 1px solid var(--accent-gold);
         }
 
-        .btn-venue {
-            background: transparent;
-            color: var(--text-white);
-            border: 1px solid rgba(255,255,255,0.2);
+        .btn-venue-nav {
+            background: #F1F5F9;
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
         }
 
         .btn-nav:hover {
@@ -136,87 +136,40 @@
             opacity: 0.9;
         }
 
-        /* Hero Section with Auto-sliding Carousel */
+        /* Light Hero Section */
         .hero {
             position: relative;
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: linear-gradient(135deg, #FAF5FF 0%, #F3E8FF 100%);
+            padding: 5rem 5% 4rem;
             text-align: center;
-            padding: 4rem 1rem;
-            overflow: hidden;
-        }
-
-        .hero-bg-carousel {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out, transform 6s ease;
-            transform: scale(1);
-        }
-
-        .slide.active {
-            opacity: 1;
-            transform: scale(1.08);
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(10,26,18,0.75) 0%, rgba(10,26,18,0.95) 100%);
-            z-index: 2;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            max-width: 900px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .organizer-tag {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(0, 230, 118, 0.15);
-            border: 1px solid var(--primary-emerald);
+            background: #DCFCE7;
+            border: 1px solid var(--brand-green);
             padding: 6px 18px;
             border-radius: 50px;
-            color: var(--primary-emerald);
-            font-weight: 700;
+            color: var(--brand-green);
+            font-weight: 800;
             margin-bottom: 1.5rem;
             font-size: 0.9rem;
         }
 
         .hero-title {
             font-family: 'Outfit', sans-serif;
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 1rem;
-            background: linear-gradient(180deg, #FFFFFF 0%, #A5F3FC 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            color: var(--primary-purple);
         }
 
         .hero-tagline {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             color: var(--accent-gold);
             font-weight: 800;
             letter-spacing: 2px;
@@ -234,18 +187,20 @@
         }
 
         .meta-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 10px 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #FFFFFF;
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            font-weight: 700;
         }
 
         .meta-item i {
-            color: var(--primary-emerald);
+            color: var(--primary-purple);
             margin-right: 8px;
         }
 
-        /* Live Countdown Timer */
+        /* Countdown Timer */
         .countdown-container {
             display: flex;
             justify-content: center;
@@ -254,25 +209,27 @@
         }
 
         .time-box {
-            background: rgba(18, 40, 29, 0.9);
-            border: 1px solid var(--border-glow);
+            background: #FFFFFF;
+            border: 2px solid var(--primary-purple);
             padding: 12px;
-            border-radius: 12px;
-            min-width: 75px;
+            border-radius: 16px;
+            min-width: 80px;
+            box-shadow: 0 4px 12px rgba(107, 33, 168, 0.1);
         }
 
         .time-box span {
             display: block;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 900;
-            color: var(--primary-emerald);
+            color: var(--primary-purple);
             font-family: 'Outfit', sans-serif;
         }
 
         .time-box label {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
             text-transform: uppercase;
+            font-weight: 700;
         }
 
         .hero-actions {
@@ -283,7 +240,7 @@
         }
 
         .btn-main {
-            padding: 14px 28px;
+            padding: 16px 32px;
             border-radius: 50px;
             font-weight: 800;
             font-size: 1rem;
@@ -291,77 +248,132 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        /* Running Photo Motion Carousel between Hero and About */
+        .middle-carousel-container {
+            width: 100%;
+            max-width: 1200px;
+            height: 380px;
+            margin: -2rem auto 3rem;
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 4px solid #FFFFFF;
+            z-index: 10;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out, transform 6s ease;
+            transform: scale(1);
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .carousel-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
         }
 
         /* Section Commons */
         section {
-            padding: 5rem 5%;
-            max-width: 1200px;
+            padding: 4rem 5%;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
             font-family: 'Outfit', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 900;
             margin-bottom: 1rem;
-            color: var(--text-white);
+            color: var(--text-dark);
         }
 
         .section-title span {
-            color: var(--primary-emerald);
+            color: var(--primary-purple);
         }
 
         .section-subtitle {
             text-align: center;
             color: var(--text-muted);
             margin-bottom: 3rem;
-            max-width: 600px;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
+            font-size: 1.1rem;
         }
 
         /* About Section */
         .about-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-glow);
-            padding: 2.5rem;
-            border-radius: 20px;
-            line-height: 1.8;
-            color: #CBD5E1;
-            font-size: 1.1rem;
+            border: 1px solid var(--border-color);
+            padding: 3rem;
+            border-radius: 24px;
+            line-height: 1.9;
+            color: #334155;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
         }
 
-        .about-card p {
-            margin-bottom: 1.2rem;
+        /* Dynamic View Section Navigation */
+        .view-section {
+            display: none;
         }
 
-        /* Participant Benefits */
+        .view-section.active-view {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Benefits Grid */
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 20px;
+            margin-top: 3rem;
         }
 
         .benefit-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(255,255,255,0.05);
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
             padding: 2rem 1.5rem;
-            border-radius: 16px;
+            border-radius: 20px;
             text-align: center;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
 
         .benefit-card:hover {
             transform: translateY(-5px);
-            border-color: var(--primary-emerald);
-            box-shadow: 0 10px 20px rgba(0, 230, 118, 0.1);
+            border-color: var(--primary-purple);
+            box-shadow: 0 10px 25px rgba(107, 33, 168, 0.1);
         }
 
         .benefit-card i {
             font-size: 2.5rem;
-            color: var(--primary-emerald);
+            color: var(--primary-purple);
             margin-bottom: 1rem;
         }
 
@@ -372,11 +384,11 @@
 
         /* Form Styling */
         .form-container {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glow);
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
             padding: 3rem;
             border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
         }
 
         .form-grid {
@@ -393,83 +405,85 @@
 
         .form-group label {
             font-weight: 700;
-            font-size: 0.9rem;
-            color: #E2E8F0;
+            font-size: 0.95rem;
+            color: var(--text-dark);
         }
 
         .form-control {
-            background: rgba(10, 26, 18, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 12px 16px;
-            border-radius: 10px;
-            color: #fff;
+            background: #F8FAFC;
+            border: 1.5px solid var(--border-color);
+            padding: 14px 18px;
+            border-radius: 12px;
+            color: var(--text-dark);
             font-size: 1rem;
             outline: none;
             transition: border-color 0.3s ease;
         }
 
         .form-control:focus {
-            border-color: var(--primary-emerald);
+            border-color: var(--primary-purple);
+            background: #FFFFFF;
         }
 
         .category-locked-box {
-            background: rgba(0, 230, 118, 0.1);
-            border: 1px dashed var(--primary-emerald);
-            padding: 15px;
-            border-radius: 10px;
+            background: #F3E8FF;
+            border: 2px dashed var(--primary-purple);
+            padding: 20px;
+            border-radius: 16px;
             margin-top: 10px;
             text-align: center;
         }
 
         .category-locked-box h3 {
-            color: var(--primary-emerald);
-            font-size: 1.2rem;
+            color: var(--primary-purple);
+            font-size: 1.3rem;
             margin-bottom: 5px;
         }
 
         .btn-submit {
             grid-column: 1 / -1;
-            background: var(--primary-emerald);
-            color: #000;
+            background: var(--primary-purple);
+            color: #FFFFFF;
             border: none;
-            padding: 16px;
+            padding: 18px;
             border-radius: 50px;
             font-weight: 900;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             cursor: pointer;
             margin-top: 1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(0, 230, 118, 0.4);
+            box-shadow: 0 10px 25px rgba(107, 33, 168, 0.3);
         }
 
         .btn-submit:hover {
             transform: scale(1.02);
         }
 
-        /* Prizes & Venue Section */
+        /* Prizes Box */
         .prize-box {
-            background: linear-gradient(135deg, #12281D 0%, #052E16 100%);
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
             border: 2px solid var(--accent-gold);
-            padding: 3rem;
-            border-radius: 20px;
+            padding: 3.5rem;
+            border-radius: 24px;
             text-align: center;
-            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.1);
         }
 
         .prize-amount {
             font-family: 'Outfit', sans-serif;
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 900;
-            color: var(--accent-gold);
+            color: #92400E;
             margin: 1rem 0;
         }
 
         .venue-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glow);
-            padding: 2.5rem;
-            border-radius: 20px;
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            padding: 3rem;
+            border-radius: 24px;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
         }
 
         .btn-directions {
@@ -478,7 +492,7 @@
             gap: 10px;
             background: #2563EB;
             color: #fff;
-            padding: 12px 24px;
+            padding: 14px 28px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
@@ -487,18 +501,19 @@
 
         /* Footer */
         footer {
-            background: #040D09;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding: 2rem 5%;
+            background: #0F172A;
+            padding: 2.5rem 5%;
             text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            color: #94A3B8;
+            font-size: 0.95rem;
+            margin-top: 4rem;
         }
 
         @media(max-width: 768px) {
-            .hero-title { font-size: 2.2rem; }
+            .hero-title { font-size: 2.5rem; }
             .nav-btns { display: none; }
-            .section-title { font-size: 1.8rem; }
+            .section-title { font-size: 2rem; }
+            .middle-carousel-container { height: 240px; margin-top: 1rem; }
             .form-container { padding: 1.5rem; }
         }
     </style>
@@ -518,26 +533,19 @@
 
     <!-- Sticky Header Navbar -->
     <nav class="navbar">
-        <a href="#" class="nav-logo">
+        <a href="javascript:void(0)" onclick="switchView('home')" class="nav-logo">
             <i class="fa-solid fa-leaf"></i> Pasumai Ingarangal
         </a>
         <div class="nav-btns">
-            <a href="#register" class="btn-nav btn-register">REGISTER NOW</a>
-            <a href="#prizes" class="btn-nav btn-price">PRICE DETAILS</a>
-            <a href="#venue" class="btn-nav btn-venue">LOCATION / VENUE</a>
+            <button onclick="switchView('register')" class="btn-nav btn-register-nav">REGISTER NOW</button>
+            <button onclick="switchView('prizes')" class="btn-nav btn-price-nav">CASH PRIZES</button>
+            <button onclick="switchView('venue')" class="btn-nav btn-venue-nav">LOCATION / VENUE</button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-bg-carousel">
-            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?q=80&w=1600&auto=format&fit=crop');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=1600&auto=format&fit=crop');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1502904550040-7534597429ae?q=80&w=1600&auto=format&fit=crop');"></div>
-        </div>
-        <div class="hero-overlay"></div>
-
-        <div class="hero-content">
+    <!-- MAIN HOME VIEW SECTION -->
+    <div id="homeView" class="view-section active-view">
+        <header class="hero">
             <div class="organizer-tag">
                 <i class="fa-solid fa-leaf"></i> Organized by Pasumai Ingarangal
             </div>
@@ -547,11 +555,11 @@
             <div class="event-meta">
                 <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> Sunday, Nov 15, 2026</div>
                 <div class="meta-item"><i class="fa-solid fa-clock"></i> Morning 5:30 AM</div>
-                <div class="meta-item"><i class="fa-solid fa-hourglass-half"></i> Registration Closes On: Nov 5, 2026</div>
+                <div class="meta-item"><i class="fa-solid fa-hourglass-half"></i> Registration Closes: Nov 5, 2026</div>
             </div>
 
-            <!-- Live Countdown Timer -->
-            <div class="countdown-container" id="countdown">
+            <!-- Countdown Timer -->
+            <div class="countdown-container">
                 <div class="time-box"><span id="days">00</span><label>Days</label></div>
                 <div class="time-box"><span id="hours">00</span><label>Hours</label></div>
                 <div class="time-box"><span id="minutes">00</span><label>Mins</label></div>
@@ -559,262 +567,227 @@
             </div>
 
             <div class="hero-actions">
-                <a href="#register" class="btn-main btn-register"><i class="fa-solid fa-bolt"></i> REGISTER NOW</a>
-                <a href="#prizes" class="btn-main btn-price"><i class="fa-solid fa-trophy"></i> PRICE DETAILS</a>
-                <a href="#venue" class="btn-main btn-venue"><i class="fa-solid fa-location-dot"></i> LOCATION / VENUE</a>
+                <button onclick="switchView('register')" class="btn-main btn-register-nav"><i class="fa-solid fa-bolt"></i> REGISTER NOW</button>
+                <button onclick="switchView('prizes')" class="btn-main btn-price-nav"><i class="fa-solid fa-trophy"></i> CASH PRIZES</button>
+                <button onclick="switchView('venue')" class="btn-main btn-venue-nav"><i class="fa-solid fa-location-dot"></i> LOCATION / VENUE</button>
             </div>
+        </header>
+
+        <!-- Dynamic Running Photo Motion Carousel (Positioned between Hero & About) -->
+        <div class="middle-carousel-container">
+            <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1502904550040-7534597429ae?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="carousel-overlay"></div>
         </div>
-    </header>
 
-    <!-- About Section -->
-    <section id="about">
-        <h2 class="section-title">About The <span>Event</span></h2>
-        <div class="about-card">
-            <p>The Green Life Marathon 2026 is a premier Children's Day Special Edition sporting event organized by <strong>Pasumai Ingarangal</strong>. Designed to foster community wellness and athletic enthusiasm, this grand run connects thousands of passionate runners dedicated to health, endurance, and environmental sustainability.</p>
-            <p>Through this athletic initiative, Pasumai Ingarangal aims to drive meaningful green initiatives and ecological awareness across Tirupur. Every step taken on race day contributes directly towards building a cleaner, greener, and healthier planet for future generations.</p>
-        </div>
-    </section>
-
-    <!-- Participant Benefits -->
-    <section id="benefits">
-        <h2 class="section-title">Participant <span>Benefits</span></h2>
-        <p class="section-subtitle">Every registered runner receives an exclusive official marathon kit along with complete race day support.</p>
-
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <i class="fa-solid fa-shirt"></i>
-                <h4>Official T-Shirt</h4>
+        <!-- About Section -->
+        <section>
+            <h2 class="section-title">About The <span>Event</span></h2>
+            <div class="about-card">
+                <p>The Green Life Marathon 2026 is a premier Children's Day Special Edition sporting event organized by <strong>Pasumai Ingarangal</strong>. Designed to foster community wellness and athletic enthusiasm, this grand run connects thousands of passionate runners dedicated to health, endurance, and environmental sustainability.</p>
+                <p style="margin-top: 1rem;">Through this athletic initiative, Pasumai Ingarangal aims to drive meaningful green initiatives and ecological awareness across Tirupur. Every step taken on race day contributes directly towards building a cleaner, greener, and healthier planet for future generations.</p>
             </div>
-            <div class="benefit-card">
-                <i class="fa-solid fa-award"></i>
-                <h4>Finisher Medal</h4>
+
+            <div class="benefits-grid">
+                <div class="benefit-card"><i class="fa-solid fa-shirt"></i><h4>Official T-Shirt</h4></div>
+                <div class="benefit-card"><i class="fa-solid fa-award"></i><h4>Finisher Medal</h4></div>
+                <div class="benefit-card"><i class="fa-solid fa-file-certificate"></i><h4>Certificate</h4></div>
+                <div class="benefit-card"><i class="fa-solid fa-bowl-food"></i><h4>Food & Drinks</h4></div>
+                <div class="benefit-card"><i class="fa-solid fa-kit-medical"></i><h4>Medical Support</h4></div>
             </div>
-            <div class="benefit-card">
-                <i class="fa-solid fa-file-certificate"></i>
-                <h4>Participation Certificate</h4>
-            </div>
-            <div class="benefit-card">
-                <i class="fa-solid fa-bowl-food"></i>
-                <h4>Food & Refreshments</h4>
-            </div>
-            <div class="benefit-card">
-                <i class="fa-solid fa-kit-medical"></i>
-                <h4>Emergency Medical Support</h4>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- Registration Section -->
-    <section id="register">
-        <h2 class="section-title">Registration <span>Form</span></h2>
-        <p class="section-subtitle">Enter your details below. Your official category and fee will be calculated & locked automatically based on your age as of November 15, 2026.</p>
+    <!-- SEPARATE REGISTER VIEW SECTION -->
+    <div id="registerView" class="view-section">
+        <section>
+            <h2 class="section-title">Online <span>Registration</span></h2>
+            <p class="section-subtitle">Enter your details below. Your official category and fee will be calculated & locked automatically based on your age on Nov 15, 2026.</p>
 
-        <div class="form-container">
-            <form id="marathonForm" class="form-grid">
-                <div class="form-group">
-                    <label>Full Name *</label>
-                    <input type="text" id="fullName" class="form-control" required placeholder="Enter your full name">
-                </div>
-
-                <div class="form-group">
-                    <label>Gender *</label>
-                    <select id="gender" class="form-control" required>
-                        <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Date of Birth *</label>
-                    <input type="date" id="dobInput" class="form-control" required onchange="calculateCategory()">
-                </div>
-
-                <div class="form-group">
-                    <label>T-Shirt Size *</label>
-                    <select id="tshirtSize" class="form-control" required>
-                        <option value="">Select T-Shirt Size</option>
-                        <option value="24">24 (Kids)</option>
-                        <option value="28">28 (Kids)</option>
-                        <option value="32">32 (Kids)</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="L">L</option>
-                        <option value="XL">XL</option>
-                        <option value="XXL">XXL</option>
-                        <option value="XXXL">XXXL</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Mobile Number 1 *</label>
-                    <input type="tel" id="mobile" class="form-control" pattern="[0-9]{10}" required placeholder="10 digit mobile number">
-                </div>
-
-                <div class="form-group">
-                    <label>WhatsApp Number *</label>
-                    <input type="tel" id="whatsapp" class="form-control" pattern="[0-9]{10}" required placeholder="WhatsApp number">
-                </div>
-
-                <div class="form-group" style="grid-column: 1 / -1;">
-                    <label>Email Address *</label>
-                    <input type="email" id="email" class="form-control" required placeholder="your.email@example.com">
-                </div>
-
-                <div class="form-group" style="grid-column: 1 / -1;">
-                    <label>Full Address *</label>
-                    <textarea id="address" class="form-control" rows="3" required placeholder="Enter complete postal address"></textarea>
-                </div>
-
-                <!-- Auto-Locked Category Display -->
-                <div class="form-group" style="grid-column: 1 / -1;">
-                    <div class="category-locked-box" id="categoryBox">
-                        <h3 id="categoryTitle">Please Select Date of Birth</h3>
-                        <p id="categoryFee">Official category & fee will be locked automatically</p>
+            <div class="form-container">
+                <form id="marathonForm" class="form-grid">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+            <input type="text" id="fullName" class="form-control" required placeholder="Enter your full name">
                     </div>
-                </div>
 
-                <button type="submit" class="btn-submit"><i class="fa-solid fa-credit-card"></i> PROCEED TO PAYMENT</button>
-            </form>
-        </div>
-    </section>
+                    <div class="form-group">
+                        <label>Gender *</label>
+                        <select id="gender" class="form-control" required>
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
 
-    <!-- Cash Prizes Section -->
-    <section id="prizes">
-        <h2 class="section-title">Cash <span>Prizes</span></h2>
-        <div class="prize-box">
-            <i class="fa-solid fa-trophy" style="font-size: 3rem; color: var(--accent-gold);"></i>
-            <p style="text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Total Cash Prize Pool</p>
-            <div class="prize-amount">₹1,50,000/-</div>
-            <p style="color: var(--text-muted);">* Category-wise individual cash prize breakdowns will be announced shortly.</p>
-        </div>
-    </section>
+                    <div class="form-group">
+                        <label>Date of Birth *</label>
+                        <input type="date" id="dobInput" class="form-control" required onchange="calculateCategory()">
+                    </div>
 
-    <!-- Venue Section -->
-    <section id="venue">
-        <h2 class="section-title">Location / <span>Venue</span></h2>
-        <div class="venue-card">
-            <i class="fa-solid fa-hospital" style="font-size: 3rem; color: var(--primary-emerald); margin-bottom: 1rem;"></i>
-            <h3>Sugan Sugaa Medical Centre</h3>
-            <p style="color: var(--text-muted); margin-top: 0.5rem;">Thirumurughan Poondi, Tirupur, Tamil Nadu</p>
-            
-            <a href="https://maps.google.com/?q=Sugan+Sugaa+Medical+Centre+Thirumurughan+Poondi+Tirupur" target="_blank" class="btn-directions">
-                <i class="fa-solid fa-map-location-dot"></i> GET DIRECTIONS
-            </a>
-        </div>
-    </section>
+                    <div class="form-group">
+                        <label>T-Shirt Size *</label>
+                        <select id="tshirtSize" class="form-control" required>
+                            <option value="">Select T-Shirt Size</option>
+                            <option value="24">24 (Kids)</option>
+                            <option value="28">28 (Kids)</option>
+                            <option value="32">32 (Kids)</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                            <option value="XXXL">XXXL</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mobile Number *</label>
+                        <input type="tel" id="mobile" class="form-control" pattern="[0-9]{10}" required placeholder="10 digit mobile number">
+                    </div>
+
+                    <div class="form-group">
+                        <label>WhatsApp Number *</label>
+                        <input type="tel" id="whatsapp" class="form-control" pattern="[0-9]{10}" required placeholder="WhatsApp number">
+                    </div>
+
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label>Email Address *</label>
+                        <input type="email" id="email" class="form-control" required placeholder="your.email@example.com">
+                    </div>
+
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label>Full Address *</label>
+                        <textarea id="address" class="form-control" rows="3" required placeholder="Enter complete postal address"></textarea>
+                    </div>
+
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <div class="category-locked-box">
+                            <h3 id="categoryTitle">Please Select Date of Birth</h3>
+                            <p id="categoryFee">Official category & fee will be locked automatically</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit"><i class="fa-solid fa-credit-card"></i> PROCEED TO PAYMENT</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- SEPARATE PRIZES VIEW SECTION -->
+    <div id="prizesView" class="view-section">
+        <section>
+            <h2 class="section-title">Cash <span>Prizes</span></h2>
+            <div class="prize-box">
+                <i class="fa-solid fa-trophy" style="font-size: 3.5rem; color: var(--accent-gold);"></i>
+                <p style="text-transform: uppercase; letter-spacing: 2px; font-weight: 800; margin-top: 1rem;">Total Cash Prize Pool</p>
+                <div class="prize-amount">₹1,50,000/-</div>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">* Category-wise individual cash prize breakdowns will be announced shortly.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- SEPARATE VENUE VIEW SECTION -->
+    <div id="venueView" class="view-section">
+        <section>
+            <h2 class="section-title">Location / <span>Venue</span></h2>
+            <div class="venue-card">
+                <i class="fa-solid fa-hospital" style="font-size: 3.5rem; color: var(--primary-purple); margin-bottom: 1rem;"></i>
+                <h3>Sugan Sugaa Medical Centre</h3>
+                <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 1.1rem;">Thirumurughan Poondi, Tirupur, Tamil Nadu</p>
+                
+                <a href="https://maps.google.com/?q=Sugan+Sugaa+Medical+Centre+Thirumurughan+Poondi+Tirupur" target="_blank" class="btn-directions">
+                    <i class="fa-solid fa-map-location-dot"></i> GET DIRECTIONS
+                </a>
+            </div>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer>
         <p>Organized by <strong>Pasumai Ingarangal</strong> © 2026. All Rights Reserved.</p>
     </footer>
 
-    <!-- All-In-One JavaScript Logic -->
+    <!-- All-In-One Script -->
     <script>
-        // 1. Hero Background Carousel Logic
-        const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
+        // Multi-Page Section Switching Logic
+        function switchView(viewName) {
+            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active-view'));
+            
+            if (viewName === 'home') document.getElementById('homeView').classList.add('active-view');
+            else if (viewName === 'register') document.getElementById('registerView').classList.add('active-view');
+            else if (viewName === 'prizes') document.getElementById('prizesView').classList.add('active-view');
+            else if (viewName === 'venue') document.getElementById('venueView').classList.add('active-view');
 
-        function nextSlide() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Carousel Logic
+        const slides = document.querySelectorAll('.carousel-slide');
+        let currentSlide = 0;
+        setInterval(() => {
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
-        }
-        setInterval(nextSlide, 4000);
+        }, 4000);
 
-        // 2. Countdown Timer Logic (Target: Nov 15, 2026 05:30 AM)
+        // Countdown Timer Logic
         const eventDate = new Date('November 15, 2026 05:30:00').getTime();
-
-        function updateCountdown() {
+        setInterval(() => {
             const now = new Date().getTime();
             const difference = eventDate - now;
-
             if (difference > 0) {
-                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-                document.getElementById('days').innerText = days < 10 ? '0' + days : days;
-                document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
-                document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
-                document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+                document.getElementById('days').innerText = Math.floor(difference / (1000 * 60 * 60 * 24));
+                document.getElementById('hours').innerText = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('minutes').innerText = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('seconds').innerText = Math.floor((difference % (1000 * 60)) / 1000);
             }
-        }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+        }, 1000);
 
-        // Global variables for calculated age category & fee
+        // Auto Category & Fee Lock
         let selectedCategoryName = "";
         let selectedFeeAmount = 0;
 
-        // 3. Category & Fee Auto-Lock Logic based on DOB (Age as of Nov 15, 2026)
         function calculateCategory() {
             const dobValue = document.getElementById('dobInput').value;
             if (!dobValue) return;
 
             const dob = new Date(dobValue);
             const targetDate = new Date('2026-11-15');
-            
             let age = targetDate.getFullYear() - dob.getFullYear();
             const monthDiff = targetDate.getMonth() - dob.getMonth();
-            
-            if (monthDiff < 0 || (monthDiff === 0 && targetDate.getDate() < dob.getDate())) {
-                age--;
-            }
+            if (monthDiff < 0 || (monthDiff === 0 && targetDate.getDate() < dob.getDate())) age--;
 
-            const titleElem = document.getElementById('categoryTitle');
-            const feeElem = document.getElementById('categoryFee');
+            if (age < 12) { selectedCategoryName = "Kids Category (Under 12)"; selectedFeeAmount = 400; }
+            else if (age <= 18) { selectedCategoryName = "Student Run (12 to 18 Yrs)"; selectedFeeAmount = 400; }
+            else if (age <= 45) { selectedCategoryName = "Open Category (19 to 45 Yrs)"; selectedFeeAmount = 450; }
+            else { selectedCategoryName = "Veterans Category (46+ Yrs)"; selectedFeeAmount = 500; }
 
-            if (age < 12) {
-                selectedCategoryName = "Kids Category (Under 12)";
-                selectedFeeAmount = 400;
-            } else if (age >= 12 && age <= 18) {
-                selectedCategoryName = "Student Run (12 to 18 Yrs)";
-                selectedFeeAmount = 400;
-            } else if (age > 18 && age <= 45) {
-                selectedCategoryName = "Open Category (19 to 45 Yrs)";
-                selectedFeeAmount = 450;
-            } else {
-                selectedCategoryName = "Veterans Category (46+ Yrs)";
-                selectedFeeAmount = 500;
-            }
-
-            titleElem.innerText = "Category: " + selectedCategoryName;
-            feeElem.innerText = "Locked Fee Amount: ₹" + selectedFeeAmount + "/-";
+            document.getElementById('categoryTitle').innerText = "Category: " + selectedCategoryName;
+            document.getElementById('categoryFee').innerText = "Locked Fee Amount: ₹" + selectedFeeAmount + "/-";
         }
 
-        // 4. Razorpay Direct Payment Checkout Workflow
+        // Razorpay Payment Integration (Using Live Key ID)
         document.getElementById('marathonForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
-            if (!selectedFeeAmount) {
-                alert("Please select a valid Date of Birth first!");
-                return;
-            }
+            if (!selectedFeeAmount) { alert("Please select Date of Birth first!"); return; }
 
             const name = document.getElementById('fullName').value;
             const email = document.getElementById('email').value;
             const mobile = document.getElementById('mobile').value;
 
-            // Razorpay Options Setup
             var options = {
-                "key": "YOUR_RAZORPAY_KEY_ID", // REPLACE THIS WITH YOUR RAZORPAY KEY ID
-                "amount": selectedFeeAmount * 100, // Amount in paise
+                "key": "rzp_live_Tck0CfQHjRBsYh", // Live Key ID Integrated
+                "amount": selectedFeeAmount * 100,
                 "currency": "INR",
                 "name": "GREEN LIFE MARATHON 2026",
                 "description": "Registration Fee - " + selectedCategoryName,
                 "handler": function (response) {
                     alert("Registration & Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
                 },
-                "prefill": {
-                    "name": name,
-                    "email": email,
-                    "contact": mobile
-                },
-                "theme": {
-                    "color": "#00E676"
-                }
+                "prefill": { "name": name, "email": email, "contact": mobile },
+                "theme": { "color": "#6B21A8" }
             };
 
             var rzp = new Razorpay(options);
@@ -822,4 +795,4 @@
         });
     </script>
 </body>
-</html>
+    </html>
