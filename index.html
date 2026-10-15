@@ -692,7 +692,7 @@
             <div class="prize-box">
                 <i class="fa-solid fa-trophy" style="font-size: 3.5rem; color: var(--accent-gold);"></i>
                 <p style="text-transform: uppercase; letter-spacing: 2px; font-weight: 800; margin-top: 1rem;">Total Cash Prize Pool</p>
-                <div class="prize-amount">₹1,50,000/-</div>
+                <div class="prize-amount">₹1.5 Lakh/-</div>
                 <p style="color: var(--text-muted); font-size: 1.1rem;">* Category-wise individual cash prize breakdowns will be announced shortly.</p>
             </div>
         </section>
@@ -794,11 +794,12 @@
                 if (age >= 45) {
                     options.push({ text: "8 KM 45+ Men - ₹500", fee: 500 });
                 }
+                options.push({ text: "16 KM Open Men - ₹500", fee: 500 });
+            }
             } else if (gender === 'Female') {
                 if (age >= 15) {
                     options.push({ text: "8 KM Open Women - ₹500", fee: 500 });
-                    options.push({ text: "16 KM Open Women - ₹500", fee: 500 });
-                }
+                    
                 if (age >= 40) {
                     options.push({ text: "8 KM 40+ Women - ₹500", fee: 500 });
                 }
