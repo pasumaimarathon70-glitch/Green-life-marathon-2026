@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GREEN LIFE MARATHON 2026 - Pasumai Ingarangal</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Razorpay Payment Checkout SDK -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    
+    <style>
+        :root {
+            --bg-dark: #0A1A12;
+            --bg-card: #12281D;
+            --primary-emerald: #00E676;
+            --accent-gold: #FFD700;
+            --text-white: #FFFFFF;
+            --text-muted: #94A3B8;
+            --glass-bg: rgba(18, 40, 29, 0.85);
+            --border-glow: rgba(0, 230, 118, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Ticker Tape */
+        .ticker-wrap {
+            width: 100%;
+            background: linear-gradient(90deg, #052e16, #00E676, #052e16);
+            color: #000;
+            font-weight: 800;
+            font-size: 0.9rem;
+            padding: 8px 0;
+            overflow: hidden;
+            position: relative;
+            z-index: 1001;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ticker {
+            display: flex;
+            white-space: nowrap;
+            animation: ticker 25s linear infinite;
+        }
+
+        .ticker-item {
+            padding: 0 2rem;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Sticky Header Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-glow);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--text-white);
+            text-decoration: none;
+        }
+
+        .nav-logo i {
+            color: var(--primary-emerald);
+            font-size: 1.6rem;
+        }
+
+        .nav-btns {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-nav {
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-register {
+            background: var(--primary-emerald);
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+        }
+
+        .btn-price {
+            background: transparent;
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
+        }
+
+        .btn-venue {
+            background: transparent;
+            color: var(--text-white);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* Hero Section with Auto-sliding Carousel */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 1rem;
+            overflow: hidden;
+        }
+
+        .hero-bg-carousel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out, transform 6s ease;
+            transform: scale(1);
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1.08);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(10,26,18,0.75) 0%, rgba(10,26,18,0.95) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 900px;
+        }
+
+        .organizer-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 230, 118, 0.15);
+            border: 1px solid var(--primary-emerald);
+            padding: 6px 18px;
+            border-radius: 50px;
+            color: var(--primary-emerald);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(180deg, #FFFFFF 0%, #A5F3FC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero-tagline {
+            font-size: 1.25rem;
+            color: var(--accent-gold);
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .event-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .meta-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .meta-item i {
+            color: var(--primary-emerald);
+            margin-right: 8px;
+        }
+
+        /* Live Countdown Timer */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 2.5rem;
+        }
+
+        .time-box {
+            background: rgba(18, 40, 29, 0.9);
+            border: 1px solid var(--border-glow);
+            padding: 12px;
+            border-radius: 12px;
+            min-width: 75px;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary-emerald);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .time-box label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-main {
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Section Commons */
+        section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--text-white);
+        }
+
+        .section-title span {
+            color: var(--primary-emerald);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        .about-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            padding: 2.5rem;
+            border-radius: 20px;
+            line-height: 1.8;
+            color: #CBD5E1;
+            font-size: 1.1rem;
+        }
+
+        .about-card p {
+            margin-bottom: 1.2rem;
+        }
+
+        /* Participant Benefits */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .benefit-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-emerald);
+            box-shadow: 0 10px 20px rgba(0, 230, 118, 0.1);
+        }
+
+        .benefit-card i {
+            font-size: 2.5rem;
+            color: var(--primary-emerald);
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        /* Form Styling */
+        .form-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #E2E8F0;
+        }
+
+        .form-control {
+            background: rgba(10, 26, 18, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 16px;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-emerald);
+        }
+
+        .category-locked-box {
+            background: rgba(0, 230, 118, 0.1);
+            border: 1px dashed var(--primary-emerald);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .category-locked-box h3 {
+            color: var(--primary-emerald);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .btn-submit {
+            grid-column: 1 / -1;
+            background: var(--primary-emerald);
+            color: #000;
+            border: none;
+            padding: 16px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.4);
+        }
+
+        .btn-submit:hover {
+            transform: scale(1.02);
+        }
+
+        /* Prizes & Venue Section */
+        .prize-box {
+            background: linear-gradient(135deg, #12281D 0%, #052E16 100%);
+            border: 2px solid var(--accent-gold);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .prize-amount {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            margin: 1rem 0;
+        }
+
+        .venue-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .btn-directions {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #2563EB;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #040D09;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 2rem 5%;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media(max-width: 768px) {
+            .hero-title { font-size: 2.2rem; }
+            .nav-btns { display: none; }
+            .section-title { font-size: 1.8rem; }
+            .form-container { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Ticker Tape -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <div class="ticker-item">🏃‍♂️ GREEN LIFE MARATHON 2026 - CHILDREN'S DAY SPECIAL EDITION</div>
+            <div class="ticker-item">🌱 RUN FOR A GREENER TOMORROW</div>
+            <div class="ticker-item">🏆 TOTAL CASH PRIZE ₹1,50,000/-</div>
+            <div class="ticker-item">📍 VENUE: THIRUMURUGHAN POONDI, TIRUPUR</div>
+            <div class="ticker-item">🏃‍♂️ GREEN LIFE MARATHON 2026 - CHILDREN'S DAY SPECIAL EDITION</div>
+        </div>
+    </div>
+
+    <!-- Sticky Header Navbar -->
+    <nav class="navbar">
+        <a href="#" class="nav-logo">
+            <i class="fa-solid fa-leaf"></i> Pasumai Ingarangal
+        </a>
+        <div class="nav-btns">
+            <a href="#register" class="btn-nav btn-register">REGISTER NOW</a>
+            <a href="#prizes" class="btn-nav btn-price">PRICE DETAILS</a>
+            <a href="#venue" class="btn-nav btn-venue">LOCATION / VENUE</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-bg-carousel">
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1502904550040-7534597429ae?q=80&w=1600&auto=format&fit=crop');"></div>
+        </div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <div class="organizer-tag">
+                <i class="fa-solid fa-leaf"></i> Organized by Pasumai Ingarangal
+            </div>
+            <h1 class="hero-title">GREEN LIFE MARATHON 2026</h1>
+            <p class="hero-tagline">RUN FOR A GREENER TOMORROW</p>
+
+            <div class="event-meta">
+                <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> Sunday, Nov 15, 2026</div>
+                <div class="meta-item"><i class="fa-solid fa-clock"></i> Morning 5:30 AM</div>
+                <div class="meta-item"><i class="fa-solid fa-hourglass-half"></i> Registration Closes On: Nov 5, 2026</div>
+            </div>
+
+            <!-- Live Countdown Timer -->
+            <div class="countdown-container" id="countdown">
+                <div class="time-box"><span id="days">00</span><label>Days</label></div>
+                <div class="time-box"><span id="hours">00</span><label>Hours</label></div>
+                <div class="time-box"><span id="minutes">00</span><label>Mins</label></div>
+                <div class="time-box"><span id="seconds">00</span><label>Secs</label></div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="#register" class="btn-main btn-register"><i class="fa-solid fa-bolt"></i> REGISTER NOW</a>
+                <a href="#prizes" class="btn-main btn-price"><i class="fa-solid fa-trophy"></i> PRICE DETAILS</a>
+                <a href="#venue" class="btn-main btn-venue"><i class="fa-solid fa-location-dot"></i> LOCATION / VENUE</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About The <span>Event</span></h2>
+        <div class="about-card">
+            <p>The Green Life Marathon 2026 is a premier Children's Day Special Edition sporting event organized by <strong>Pasumai Ingarangal</strong>. Designed to foster community wellness and athletic enthusiasm, this grand run connects thousands of passionate runners dedicated to health, endurance, and environmental sustainability.</p>
+            <p>Through this athletic initiative, Pasumai Ingarangal aims to drive meaningful green initiatives and ecological awareness across Tirupur. Every step taken on race day contributes directly towards building a cleaner, greener, and healthier planet for future generations.</p>
+        </div>
+    </section>
+
+    <!-- Participant Benefits -->
+    <section id="benefits">
+        <h2 class="section-title">Participant <span>Benefits</span></h2>
+        <p class="section-subtitle">Every registered runner receives an exclusive official marathon kit along with complete race day support.</p>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <i class="fa-solid fa-shirt"></i>
+                <h4>Official T-Shirt</h4>
+            </div>
+            <div class="benefit-card">
+                <i class="fa-solid fa-award"></i>
+                <h4>Finisher Medal</h4>
+            </div>
+            <div class="benefit-card">
+                <i class="fa-solid fa-file-certificate"></i>
+                <h4>Participation Certificate</h4>
+            </div>
+            <div class="benefit-card">
+                <i class="fa-solid fa-bowl-food"></i>
+                <h4>Food & Refreshments</h4>
+            </div>
+            <div class="benefit-card">
+                <i class="fa-solid fa-kit-medical"></i>
+                <h4>Emergency Medical Support</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="register">
+        <h2 class="section-title">Registration <span>Form</span></h2>
+        <p class="section-subtitle">Enter your details below. Your official category and fee will be calculated & locked automatically based on your age as of November 15, 2026.</p>
+
+        <div class="form-container">
+            <form id="marathonForm" class="form-grid">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="fullName" class="form-control" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label>Gender *</label>
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Date of Birth *</label>
+                    <input type="date" id="dobInput" class="form-control" required onchange="calculateCategory()">
+                </div>
+
+                <div class="form-group">
+                    <label>T-Shirt Size *</label>
+                    <select id="tshirtSize" class="form-control" required>
+                        <option value="">Select T-Shirt Size</option>
+                        <option value="24">24 (Kids)</option>
+                        <option value="28">28 (Kids)</option>
+                        <option value="32">32 (Kids)</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                        <option value="XXXL">XXXL</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Mobile Number 1 *</label>
+                    <input type="tel" id="mobile" class="form-control" pattern="[0-9]{10}" required placeholder="10 digit mobile number">
+                </div>
+
+                <div class="form-group">
+                    <label>WhatsApp Number *</label>
+                    <input type="tel" id="whatsapp" class="form-control" pattern="[0-9]{10}" required placeholder="WhatsApp number">
+                </div>
+
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label>Email Address *</label>
+                    <input type="email" id="email" class="form-control" required placeholder="your.email@example.com">
+                </div>
+
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label>Full Address *</label>
+                    <textarea id="address" class="form-control" rows="3" required placeholder="Enter complete postal address"></textarea>
+                </div>
+
+                <!-- Auto-Locked Category Display -->
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <div class="category-locked-box" id="categoryBox">
+                        <h3 id="categoryTitle">Please Select Date of Birth</h3>
+                        <p id="categoryFee">Official category & fee will be locked automatically</p>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit"><i class="fa-solid fa-credit-card"></i> PROCEED TO PAYMENT</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Cash Prizes Section -->
+    <section id="prizes">
+        <h2 class="section-title">Cash <span>Prizes</span></h2>
+        <div class="prize-box">
+            <i class="fa-solid fa-trophy" style="font-size: 3rem; color: var(--accent-gold);"></i>
+            <p style="text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Total Cash Prize Pool</p>
+            <div class="prize-amount">₹1,50,000/-</div>
+            <p style="color: var(--text-muted);">* Category-wise individual cash prize breakdowns will be announced shortly.</p>
+        </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section id="venue">
+        <h2 class="section-title">Location / <span>Venue</span></h2>
+        <div class="venue-card">
+            <i class="fa-solid fa-hospital" style="font-size: 3rem; color: var(--primary-emerald); margin-bottom: 1rem;"></i>
+            <h3>Sugan Sugaa Medical Centre</h3>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">Thirumurughan Poondi, Tirupur, Tamil Nadu</p>
+            
+            <a href="https://maps.google.com/?q=Sugan+Sugaa+Medical+Centre+Thirumurughan+Poondi+Tirupur" target="_blank" class="btn-directions">
+                <i class="fa-solid fa-map-location-dot"></i> GET DIRECTIONS
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Organized by <strong>Pasumai Ingarangal</strong> © 2026. All Rights Reserved.</p>
+    </footer>
+
+    <!-- All-In-One JavaScript Logic -->
+    <script>
+        // 1. Hero Background Carousel Logic
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(nextSlide, 4000);
+
+        // 2. Countdown Timer Logic (Target: Nov 15, 2026 05:30 AM)
+        const eventDate = new Date('November 15, 2026 05:30:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = eventDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+                document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Global variables for calculated age category & fee
+        let selectedCategoryName = "";
+        let selectedFeeAmount = 0;
+
+        // 3. Category & Fee Auto-Lock Logic based on DOB (Age as of Nov 15, 2026)
+        function calculateCategory() {
+            const dobValue = document.getElementById('dobInput').value;
+            if (!dobValue) return;
+
+            const dob = new Date(dobValue);
+            const targetDate = new Date('2026-11-15');
+            
+            let age = targetDate.getFullYear() - dob.getFullYear();
+            const monthDiff = targetDate.getMonth() - dob.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && targetDate.getDate() < dob.getDate())) {
+                age--;
+            }
+
+            const titleElem = document.getElementById('categoryTitle');
+            const feeElem = document.getElementById('categoryFee');
+
+            if (age < 12) {
+                selectedCategoryName = "Kids Category (Under 12)";
+                selectedFeeAmount = 400;
+            } else if (age >= 12 && age <= 18) {
+                selectedCategoryName = "Student Run (12 to 18 Yrs)";
+                selectedFeeAmount = 400;
+            } else if (age > 18 && age <= 45) {
+                selectedCategoryName = "Open Category (19 to 45 Yrs)";
+                selectedFeeAmount = 450;
+            } else {
+                selectedCategoryName = "Veterans Category (46+ Yrs)";
+                selectedFeeAmount = 500;
+            }
+
+            titleElem.innerText = "Category: " + selectedCategoryName;
+            feeElem.innerText = "Locked Fee Amount: ₹" + selectedFeeAmount + "/-";
+        }
+
+        // 4. Razorpay Direct Payment Checkout Workflow
+        document.getElementById('marathonForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (!selectedFeeAmount) {
+                alert("Please select a valid Date of Birth first!");
+                return;
+            }
+
+            const name = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+
+            // Razorpay Options Setup
+            var options = {
+                "key": "YOUR_RAZORPAY_KEY_ID", // REPLACE THIS WITH YOUR RAZORPAY KEY ID
+                "amount": selectedFeeAmount * 100, // Amount in paise
+                "currency": "INR",
+                "name": "GREEN LIFE MARATHON 2026",
+                "description": "Registration Fee - " + selectedCategoryName,
+                "handler": function (response) {
+                    alert("Registration & Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
+                },
+                "prefill": {
+                    "name": name,
+                    "email": email,
+                    "contact": mobile
+                },
+                "theme": {
+                    "color": "#00E676"
+                }
+            };
+
+            var rzp = new Razorpay(options);
+            rzp.open();
+        });
+    </script>
+</body>
+</html>
