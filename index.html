@@ -1,315 +1,521 @@
 <!DOCTYPE html>
-<html lang="ta">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Green Life Marathon 2026</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-  <style>
-    :root {
-      --primary-green: #0d3b2e;
-      --accent-green: #155724;
-      --light-bg: #f4f7f4;
-      --dark-footer: #1c2b26;
-      --text-main: #1f2937;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-    body { background-color: var(--light-bg); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
-
-    /* Top Header - Simplified */
-    header {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 12px 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-    .logo-container { display: flex; align-items: center; gap: 12px; }
-    .logo-img { height: 48px; border-radius: 6px; }
-
-    /* Hero Section with Exact Image Background & Overlay Styling */
-    .hero {
-      background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.4)), 
-                  url('https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&w=1600&q=80');
-      background-size: cover;
-      background-position: center;
-      text-align: center;
-      padding: 50px 20px 70px;
-      position: relative;
-    }
-
-    .hero-tree-logo { width: 110px; margin-bottom: 10px; }
-    .hero h1 { font-size: 3rem; font-weight: 800; color: #0d3b2e; letter-spacing: -1px; text-transform: uppercase; margin-bottom: 5px; }
-    .hero p.tagline { font-size: 1.15rem; color: #155724; font-weight: 700; font-style: italic; margin-bottom: 25px; }
-
-    .event-info { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; font-weight: 700; }
-    .info-badge { background: #fff; padding: 10px 20px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); color: #0d3b2e; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; }
-
-    /* Live Countdown Box */
-    .countdown-box { display: flex; justify-content: center; gap: 12px; margin: 15px 0 25px; }
-    .time-card {
-      background: var(--primary-green);
-      color: #fff;
-      width: 72px;
-      height: 72px;
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    }
-    .time-card span.num { font-size: 1.5rem; font-weight: 800; line-height: 1; }
-    .time-card span.label { font-size: 0.65rem; text-transform: uppercase; color: #a3e635; margin-top: 3px; font-weight: 600; }
-
-    /* Button Hierarchy */
-    .btn-container { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 15px; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Life Marathon 2026</title>
+    <!-- Tailwind CSS for Layout & Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Razorpay Checkout SDK -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    .btn-register-large {
-      background: #0d3b2e;
-      color: #fff;
-      padding: 16px 45px;
-      border-radius: 40px;
-      font-size: 1.25rem;
-      font-weight: 800;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 8px 25px rgba(13, 59, 46, 0.4);
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-    .btn-register-large:hover { background: #155724; transform: scale(1.03); }
+    <style>
+        :root {
+            --brand-green: #1b5e20;
+            --light-green: #e8f5e9;
+            --accent-green: #2e7d32;
+        }
 
-    .sub-btn-group { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-    .btn-sub {
-      background: #ffffff;
-      color: #0d3b2e;
-      padding: 10px 22px;
-      border-radius: 25px;
-      font-weight: 700;
-      font-size: 0.88rem;
-      border: 2px solid #0d3b2e;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      transition: all 0.2s;
-    }
-    .btn-sub:hover { background: #f0fdf4; transform: translateY(-2px); }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f4;
+            color: #2c3e50;
+        }
 
-    /* About Section (Children's Day Edition) */
-    .about-section {
-      max-width: 950px;
-      margin: -25px auto 40px;
-      background: #ffffff;
-      padding: 35px 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-      text-align: center;
-      position: relative;
-      z-index: 10;
-      border-top: 5px solid #2e7d32;
-    }
-    .about-section h2 { font-size: 1.8rem; color: var(--primary-green); margin-bottom: 12px; font-weight: 800; }
-    .about-section p { color: #4b5563; font-size: 0.98rem; line-height: 1.7; }
+        /* Hero Banner Background Styling */
+        .hero-banner {
+            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
+                        url('https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&q=80&w=1600') center/cover no-repeat;
+            min-height: 520px;
+        }
 
-    /* Participant Benefits Grid Section */
-    .benefits-section { max-width: 1150px; margin: 0 auto 50px; padding: 0 20px; text-align: center; }
-    .benefits-grid { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; margin-top: 25px; }
-    .benefit-card {
-      background: #fff;
-      border-radius: 16px;
-      overflow: hidden;
-      width: 200px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-      border: 1px solid #e5e7eb;
-      text-align: center;
-      padding-bottom: 15px;
-    }
-    .benefit-card img { width: 100%; height: 130px; object-fit: cover; }
-    .benefit-card h4 { color: var(--primary-green); font-size: 0.95rem; font-weight: 700; margin: 12px 0 4px; }
-    .benefit-card p { font-size: 0.78rem; color: #6b7280; padding: 0 10px; }
+        /* Glassmorphism Info Cards */
+        .info-pill {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
 
-    /* Modal Form Styling */
-    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
-    .modal-content { background: #fff; padding: 30px; border-radius: 20px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
-    .close-btn { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #6b7280; }
-
-    .form-group { margin-bottom: 14px; }
-    .form-group label { display: block; font-size: 0.82rem; font-weight: 700; color: var(--primary-green); margin-bottom: 5px; }
-    .form-group input, .form-group select { width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px; font-size: 0.92rem; outline: none; }
-
-    /* Footer */
-    footer { background: var(--dark-footer); color: #9ca3af; text-align: center; padding: 30px 20px; font-size: 0.88rem; }
-    footer strong { color: #fff; }
-  </style>
+        .modal-bg {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Top Header -->
-  <header>
-    <div class="logo-container">
-      <img src="https://via.placeholder.com/50x50?text=PI+Logo" alt="Pasumai Ingarangal" class="logo-img">
-      <div>
-        <div style="font-size:11px; font-weight:800; color:#2e7d32; letter-spacing:0.5px;">GREEN LIFE MARATHON 2026</div>
-        <div style="font-size:0.9rem; font-weight:800; color:var(--primary-green);">Organised by Pasumai Ingarangal</div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <div class="hero">
-    <h1>GREEN LIFE MARATHON 2026</h1>
-    <p class="tagline">Run for Health. Run for Nature. Run for a Greener Tomorrow.</p>
-    
-    <div class="event-info">
-      <div class="info-badge">📅 15 November 2026</div>
-      <div class="info-badge">📍 SUGAN SUGA Medical Center, Thirumurugan Poondi</div>
-      <div class="info-badge" style="color:#dc2626;">⏳ Reg. Closes: 05 Nov 2026</div>
-    </div>
-
-    <!-- Live Countdown Timer -->
-    <div class="countdown-box" id="countdown">
-      <div class="time-card"><span class="num" id="days">00</span><span class="label">Days</span></div>
-      <div class="time-card"><span class="num" id="hours">00</span><span class="label">Hours</span></div>
-      <div class="time-card"><span class="num" id="mins">00</span><span class="label">Mins</span></div>
-      <div class="time-card"><span class="num" id="secs">00</span><span class="label">Secs</span></div>
-    </div>
-
-    <!-- Register Button (Large) & Sub Buttons (Location & Cash Prize) -->
-    <div class="btn-container">
-      <button class="btn-register-large" onclick="openModal('regModal')">🏃 REGISTER NOW ➔</button>
-      <div class="sub-btn-group">
-        <a href="https://maps.app.goo.gl/7L3ouZKi9iQ6hf8j6?g_st=ac" target="_blank" class="btn-sub">📍 LOCATION (GOOGLE MAPS)</a>
-        <button class="btn-sub" onclick="openModal('prizeModal')">🏆 CASH PRIZE DETAILS</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- About Section (Children's Day Special) -->
-  <div class="about-section">
-    <h2>About The Event</h2>
-    <p>
-      <strong>Green Life Marathon 2026</strong> is organized as a special Children's Day edition to foster physical health, active lifestyles, and environmental conservation among our youth and community. Join us in Tiruppur for a powerful run towards a greener future!
-    </p>
-  </div>
-
-  <!-- Participant Benefits Section -->
-  <div class="benefits-section">
-    <h2 style="color:var(--primary-green); font-size: 1.8rem; font-weight: 800;">Participant Benefits</h2>
-    <div class="benefits-grid">
-      <div class="benefit-card">
-        <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=300&q=80" alt="Official T-Shirt">
-        <h4>Official T-Shirt</h4>
-        <p>High-quality event running jersey</p>
-      </div>
-      <div class="benefit-card">
-        <img src="https://images.unsplash.com/photo-1578269174936-2709b6aeb913?auto=format&fit=crop&w=300&q=80" alt="Finisher Medal">
-        <h4>Finisher Medal</h4>
-        <p>Exclusive design finisher medal</p>
-      </div>
-      <div class="benefit-card">
-        <img src="https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=300&q=80" alt="Certificate">
-        <h4>Certificate</h4>
-        <p>Offical participation certificate</p>
-      </div>
-      <div class="benefit-card">
-        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=300&q=80" alt="Breakfast">
-        <h4>Breakfast</h4>
-        <p>Healthy breakfast & hydration</p>
-      </div>
-      <div class="benefit-card">
-        <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=300&q=80" alt="Medical Support">
-        <h4>Medical Support</h4>
-        <p>First aid & medical team on spot</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Registration Modal Form -->
-  <div class="modal" id="regModal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal('regModal')">&times;</span>
-      <h3 style="margin-bottom:18px; color:var(--primary-green); font-weight:800;">Registration Form</h3>
-      <form id="marathonForm">
-        <div class="form-group"><label>Full Name</label><input type="text" id="fullName" placeholder="Enter Full Name" required></div>
-        <div class="form-group"><label>Date of Birth</label><input type="date" id="dob" onchange="calculateCategory()" required></div>
-        <div class="form-group"><label>Age (as on 15 Nov 2026)</label><input type="text" id="age" placeholder="Auto calculated" readonly></div>
-        <div class="form-group">
-          <label>Gender</label>
-          <select id="gender" onchange="calculateCategory()" required>
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
+    <!-- HEADER / NAVIGATION BAR -->
+    <header class="bg-white shadow-md sticky top-0 z-40 border-b border-green-100">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Pasumai Ingarangal & Green Life Marathon Logo -->
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-800 text-2xl font-bold border border-green-300">
+                    <i class="fa-solid font-tree text-green-700">🌱</i>
+                </div>
+                <div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-green-700 block">Organized by</span>
+                    <h1 class="text-xl md:text-2xl font-extrabold text-green-900 leading-tight">
+                        Pasumai Ingarangal & Suga Medical Center
+                    </h1>
+                </div>
+            </div>
+            
+            <!-- Marathon Title -->
+            <div class="hidden md:block text-right">
+                <span class="text-lg font-bold text-green-800">GREEN LIFE MARATHON 2026</span>
+                <p class="text-xs text-gray-500">Run for Health. Run for Nature.</p>
+            </div>
         </div>
-        
-        <!-- Category Selection immediately after DOB/Gender -->
-        <div class="form-group">
-          <label>Select Category</label>
-          <select id="categorySelect" onchange="updateFee()" required>
-            <option value="">Select Category</option>
-          </select>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-banner relative flex items-center justify-center text-white px-4 py-12">
+        <div class="max-w-4xl mx-auto text-center space-y-6">
+            
+            <!-- Title Branding -->
+            <div class="space-y-2">
+                <h2 class="text-yellow-400 font-bold uppercase tracking-widest text-sm md:text-base">Children's Day Special Event</h2>
+                <h1 class="text-4xl md:text-6xl font-black tracking-tight text-white drop-shadow-lg">
+                    GREEN LIFE MARATHON 2026
+                </h1>
+                <p class="text-lg md:text-xl font-medium italic text-green-100">
+                    "Run for Health. Run for Nature. Run for a Greener Tomorrow."
+                </p>
+            </div>
+
+            <!-- Event Details Pills -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-gray-800 text-sm md:text-base font-semibold max-w-3xl mx-auto pt-2">
+                <div class="info-pill p-3 flex items-center justify-center space-x-2">
+                    <i class="fa-regular fa-calendar-days text-green-700 text-xl"></i>
+                    <span>15 November 2026</span>
+                </div>
+                <div class="info-pill p-3 flex items-center justify-center space-x-2 cursor-pointer hover:bg-green-50 transition" onclick="openLocation()">
+                    <i class="fa-solid fa-location-dot text-red-600 text-xl"></i>
+                    <span class="text-left text-xs md:text-sm">SUGAN SUGA Medical Center, Thirumurugan Poondi</span>
+                </div>
+                <div class="info-pill p-3 flex items-center justify-center space-x-2 text-red-600 font-bold">
+                    <i class="fa-regular fa-clock text-xl"></i>
+                    <span>Reg Closes: 05 Nov 2026</span>
+                </div>
+            </div>
+
+            <!-- Registration & Action Buttons -->
+            <div class="pt-4 flex flex-col items-center justify-center space-y-4">
+                
+                <!-- Main BIG Register Button -->
+                <button onclick="openRegisterModal()" class="bg-green-600 hover:bg-green-700 text-white font-extrabold text-xl md:text-2xl px-10 py-4 rounded-full shadow-2xl transform hover:scale-105 transition duration-200 border-2 border-white flex items-center space-x-3">
+                    <span>REGISTER NOW</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <!-- Smaller Buttons below Register Now -->
+                <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                    <button onclick="openPriceModal()" class="bg-white/90 hover:bg-white text-green-900 font-bold text-sm px-5 py-2.5 rounded-lg shadow-md hover:shadow-lg transition flex items-center space-x-2">
+                        <i class="fa-solid fa-trophy text-yellow-600"></i>
+                        <span>Prize Details</span>
+                    </button>
+                    
+                    <button onclick="openLocation()" class="bg-white/90 hover:bg-white text-green-900 font-bold text-sm px-5 py-2.5 rounded-lg shadow-md hover:shadow-lg transition flex items-center space-x-2">
+                        <i class="fa-solid fa-map-location-dot text-green-700"></i>
+                        <span>Location Box</span>
+                    </button>
+                </div>
+
+                <!-- Countdown Timer -->
+                <div id="countdown" class="bg-black/60 text-white px-6 py-2 rounded-full text-xs md:text-sm font-mono tracking-wider border border-green-400/30 mt-2">
+                    Registration Deadline Countdown: <span id="timer" class="text-yellow-300 font-bold">--d --h --m --s</span>
+                </div>
+
+            </div>
+
         </div>
+    </section>
 
-        <div class="form-group">
-          <label>T-Shirt Size</label>
-          <select id="tshirt" required>
-            <option value="24">24</option><option value="26">26</option><option value="28">28</option>
-            <option value="30">30</option><option value="32">32</option><option value="34">34</option>
-            <option value="S">S</option><option value="M">M</option><option value="L">L</option>
-            <option value="XL">XL</option><option value="XXL">XXL</option>
-          </select>
+    <!-- ABOUT SECTION -->
+    <section class="max-w-5xl mx-auto px-4 py-12">
+        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border-l-8 border-green-600">
+            <h3 class="text-2xl md:text-3xl font-extrabold text-green-900 mb-4 flex items-center space-x-2">
+                <i class="fa-solid fa-circle-info text-green-600"></i>
+                <span>About Green Life Marathon 2026</span>
+            </h3>
+            <p class="text-gray-700 leading-relaxed text-base md:text-lg">
+                Organized by <strong>Pasumai Ingarangal</strong> in collaboration with <strong>Sugan Suga Hospital</strong>, the <strong>Green Life Marathon 2026</strong> is a grand fitness and environmental awareness event held in celebration of <strong>Children's Day</strong>. Designed to inspire the younger generation and adults alike, this event emphasizes wellness, environmental protection, and community health. Join us on November 15, 2026, to run for a greener, healthier future!
+            </p>
         </div>
+    </section>
 
-        <div class="form-group"><label>Mobile Number</label><input type="tel" id="mobile" placeholder="10-digit Mobile Number" required></div>
-        <div class="form-group"><label>Email Address</label><input type="email" id="email" placeholder="Your Email" required></div>
-        <div class="form-group"><label>Address</label><input type="text" id="address" placeholder="Town / City" required></div>
-        <div class="form-group"><label>Registration Fee</label><input type="text" id="fee" placeholder="₹ Fee" readonly></div>
-        
-        <button type="button" class="btn-register-large" style="width:100%; border-radius:12px; justify-content:center;" onclick="startPayment()">PROCEED TO PAYMENT</button>
-      </form>
+    <!-- PARTICIPANT BENEFITS SECTION -->
+    <section class="bg-green-50 py-12 px-4 border-t border-b border-green-100">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-extrabold text-center text-green-900 mb-8 tracking-tight">
+                Participant Benefits
+            </h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
+                <!-- T-Shirt -->
+                <div class="bg-white p-4 rounded-xl shadow-md text-center border border-green-100 hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&q=80&w=300" alt="Official T-Shirt" class="w-full h-32 object-cover rounded-md mb-3">
+                    <h4 class="font-bold text-green-900 text-sm md:text-base">Official T-Shirt</h4>
+                    <p class="text-xs text-gray-500 mt-1">High-quality event running jersey</p>
+                </div>
+
+                <!-- Finisher Medal -->
+                <div class="bg-white p-4 rounded-xl shadow-md text-center border border-green-100 hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&q=80&w=300" alt="Finisher Medal" class="w-full h-32 object-cover rounded-md mb-3">
+                    <h4 class="font-bold text-green-900 text-sm md:text-base">Finisher Medal</h4>
+                    <p class="text-xs text-gray-500 mt-1">Exclusive design finisher medal</p>
+                </div>
+
+                <!-- Certificate -->
+                <div class="bg-white p-4 rounded-xl shadow-md text-center border border-green-100 hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=300" alt="Certificate" class="w-full h-32 object-cover rounded-md mb-3">
+                    <h4 class="font-bold text-green-900 text-sm md:text-base">Certificate</h4>
+                    <p class="text-xs text-gray-500 mt-1">Official participation certificate</p>
+                </div>
+
+                <!-- Breakfast -->
+                <div class="bg-white p-4 rounded-xl shadow-md text-center border border-green-100 hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1493770348161-369560ae357d?auto=format&fit=crop&q=80&w=300" alt="Breakfast" class="w-full h-32 object-cover rounded-md mb-3">
+                    <h4 class="font-bold text-green-900 text-sm md:text-base">Breakfast</h4>
+                    <p class="text-xs text-gray-500 mt-1">Healthy breakfast & hydration</p>
+                </div>
+
+                <!-- Medical Support -->
+                <div class="bg-white p-4 rounded-xl shadow-md text-center border border-green-100 hover:shadow-xl transition col-span-2 md:col-span-1">
+                    <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&q=80&w=300" alt="Medical Support" class="w-full h-32 object-cover rounded-md mb-3">
+                    <h4 class="font-bold text-green-900 text-sm md:text-base">Medical Support</h4>
+                    <p class="text-xs text-gray-500 mt-1">First aid & medical team on spot</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-green-950 text-white py-6 text-center text-xs md:text-sm border-t border-green-800">
+        <p>© 2026 Pasumai Ingarangal. All Rights Reserved.</p>
+    </footer>
+
+
+    <!-- MODAL 1: PRICE DETAILS POPUP -->
+    <div id="priceModal" class="fixed inset-0 modal-bg z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 text-center shadow-2xl space-y-4 relative">
+            <button onclick="closePriceModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl font-bold">&times;</button>
+            <div class="w-16 h-16 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h3 class="text-3xl md:text-4xl font-black text-green-900 tracking-tight">
+                TOTAL CASH PRIZE ₹1.5 LAKHS
+            </h3>
+            <p class="text-base md:text-lg text-gray-700 font-medium">
+                Category-wise prize split-up will be announced soon.
+            </p>
+            <button onclick="closePriceModal()" class="w-full bg-green-700 text-white font-bold py-3 rounded-xl hover:bg-green-800 transition">
+                Close
+            </button>
+        </div>
     </div>
-  </div>
 
-  <!-- Cash Prize Modal -->
-  <div class="modal" id="prizeModal">
-    <div class="modal-content" style="text-align:center;">
-      <span class="close-btn" onclick="closeModal('prizeModal')">&times;</span>
-      <h3 style="color:var(--primary-green); font-size:1.5rem; margin-bottom:10px;">TOTAL CASH PRIZE ₹1,50,000</h3>
-      <p style="color:#4b5563;">Category-wise prize distribution details will be announced soon!</p>
+
+    <!-- MODAL 2: REGISTRATION FORM POPUP -->
+    <div id="registerModal" class="fixed inset-0 modal-bg z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 md:p-8 shadow-2xl relative my-8 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeRegisterModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl font-bold">&times;</button>
+            
+            <h3 class="text-2xl font-bold text-green-900 mb-1 border-b pb-3">Participant Registration</h3>
+            
+            <form id="regForm" onsubmit="handleRegistration(event)" class="space-y-4 pt-2">
+                
+                <!-- Full Name -->
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Full Name *</label>
+                    <input type="text" id="fullName" required class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none" placeholder="Enter full name">
+                </div>
+
+                <!-- Gender & Date of Birth Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Gender *</label>
+                        <select id="gender" required onchange="calculateCategory()" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Date of Birth *</label>
+                        <input type="date" id="dob" required max="2026-11-15" onchange="calculateCategory()" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none">
+                    </div>
+                </div>
+
+                <!-- Calculated Category Display -->
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Eligible Category *</label>
+                    <select id="categorySelect" required class="w-full border border-gray-300 rounded-lg p-3 text-sm bg-green-50 font-semibold text-green-900 border-green-300 focus:ring-2 focus:ring-green-500 outline-none">
+                        <option value="">Select Gender & DOB First</option>
+                    </select>
+                </div>
+
+                <!-- T-Shirt Size -->
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">T-Shirt Size *</label>
+                    <select id="tshirtSize" required class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none">
+                        <option value="">Select T-Shirt Size</option>
+                        <option value="24">24</option>
+                        <option value="26">26</option>
+                        <option value="28">28</option>
+                        <option value="30">30</option>
+                        <option value="32">32</option>
+                        <option value="34">34</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                        <option value="XXXL">XXXL</option>
+                    </select>
+                </div>
+
+                <!-- Address -->
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Full Address *</label>
+                    <textarea id="address" required rows="2" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none" placeholder="Enter complete residential address"></textarea>
+                </div>
+
+                <!-- Phone Numbers & Email Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Phone Number *</label>
+                        <input type="tel" id="phone" required pattern="[0-9]{10}" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none" placeholder="10 digit mobile">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">WhatsApp Number *</label>
+                        <input type="tel" id="whatsapp" required pattern="[0-9]{10}" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none" placeholder="10 digit WhatsApp">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email Address *</label>
+                        <input type="email" id="email" required class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none" placeholder="name@example.com">
+                    </div>
+                </div>
+
+                <!-- Registration Fee Display -->
+                <div class="bg-gray-100 p-4 rounded-xl flex items-center justify-between mt-4">
+                    <span class="text-sm font-bold text-gray-700">Total Registration Fee:</span>
+                    <span id="feeDisplay" class="text-2xl font-black text-green-800">₹0</span>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submitBtn" class="w-full bg-green-700 hover:bg-green-800 text-white font-extrabold py-4 rounded-xl text-lg shadow-lg transition duration-200">
+                    PROCEED TO PAY
+                </button>
+            </form>
+        </div>
     </div>
-  </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>Organised by <strong>Pasumai Ingarangal, Karur</strong></p>
-    <p style="margin-top:6px; font-size:0.78rem;">© 2026 Pasumai Ingarangal. All Rights Reserved.</p>
-  </footer>
 
-  <script>
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw2eUjpZIxW4fGRuAU_IKU1L26UOBA77CiBoMVZsTIjpvSI24uscf2CENvCPXNYpqh/exec";
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // CONFIGURATIONS
+        const RAZORPAY_KEY = "rzp_live_Tck0CfQHjRBsYh";
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw2eUjpZIxW4fGRuAU_IKU1L26UOBA77CiBoMVZsTIjpvSI24uscf2CENvCPXNYpqh/exec";
+        const GOOGLE_MAP_URL = "https://maps.app.goo.gl/jP6GjWLTr2ku3t8f9?g_st=ac";
 
-    // Countdown Timer Logic
-    const eventDate = new Date("Nov 15, 2026 06:00:00").getTime();
-    setInterval(() => {
-      const now = new Date().getTime();
-      const diff = eventDate - now;
-      document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-      document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000);
-    }, 1000);
+        // Navigation Functions
+        function openLocation() {
+            window.open(GOOGLE_MAP_URL, '_blank');
+        }
 
-    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-    function closeModal(id) { document.getElementById
-              
+        function openPriceModal() {
+            document.getElementById('priceModal').classList.remove('hidden');
+        }
+
+        function closePriceModal() {
+            document.getElementById('priceModal').classList.add('hidden');
+        }
+
+        function openRegisterModal() {
+            document.getElementById('registerModal').classList.remove('hidden');
+        }
+
+        function closeRegisterModal() {
+            document.getElementById('registerModal').classList.add('hidden');
+        }
+
+        // Countdown Timer Logic
+        const eventDate = new Date('2026-11-05T23:59:59').getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+            if (distance < 0) {
+                document.getElementById('timer').innerText = "REGISTRATION CLOSED";
+              return;
+            }
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById('timer').innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }, 1000);
+
+        // Age & Category Logic based on Event Date 15-Nov-2026
+        function calculateCategory() {
+            const dobInput = document.getElementById('dob').value;
+            const gender = document.getElementById('gender').value;
+            const categorySelect = document.getElementById('categorySelect');
+            const feeDisplay = document.getElementById('feeDisplay');
+
+            categorySelect.innerHTML = "";
+
+            if (!dobInput || !gender) {
+                categorySelect.innerHTML = `<option value="">Select Gender & DOB First</option>`;
+                feeDisplay.innerText = "₹0";
+                return;
+            }
+
+            const dob = new Date(dobInput);
+            const marathonDate = new Date('2026-11-15');
+            
+            let age = marathonDate.getFullYear() - dob.getFullYear();
+            const monthDiff = marathonDate.getMonth() - dob.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && marathonDate.getDate() < dob.getDate())) {
+                age--;
+            }
+
+            let options = [];
+
+            // Kids Logic (3 to 15)
+            if (age >= 3 && age < 8) {
+                options.push({ text: "Kids (3 to <8 yrs) - 1 KM - ₹400", fee: 400 });
+            } else if (age >= 8 && age < 10) {
+                options.push({ text: "Kids (8 to <10 yrs) - 2 KM - ₹400", fee: 400 });
+            } else if (age >= 10 && age < 12) {
+                options.push({ text: "Kids (10 to <12 yrs) - 3 KM - ₹400", fee: 400 });
+            } else if (age >= 12 && age < 15) {
+                options.push({ text: "Kids (12 to <15 yrs) - 4 KM - ₹400", fee: 400 });
+            } 
+            // Male Logic
+            else if (gender === 'Male') {
+                if (age >= 15 && age < 45) {
+                    options.push({ text: "Men 15+ - 8 KM - ₹450", fee: 450 });
+                    options.push({ text: "Open Men - 16 KM - ₹500", fee: 500 });
+                } else if (age >= 45) {
+                    options.push({ text: "Men 45+ - 8 KM - ₹500", fee: 500 });
+                    options.push({ text: "Open Men - 16 KM - ₹500", fee: 500 });
+                }
+            } 
+            // Female Logic
+            else if (gender === 'Female') {
+                if (age >= 40) {
+                    // Women 40+ ONLY (Open Women hidden as requested)
+                    options.push({ text: "Women 40+ - 8 KM - ₹500", fee: 500 });
+                } else if (age >= 15) {
+                    options.push({ text: "Open Women - 8 KM - ₹500", fee: 500 });
+                }
+            }
+
+            if (options.length === 0) {
+                categorySelect.innerHTML = `<option value="">Age not eligible for event</option>`;
+                feeDisplay.innerText = "₹0";
+                return;
+            }
+
+            options.forEach(opt => {
+                const el = document.createElement('option');
+                el.value = opt.text;
+                el.dataset.fee = opt.fee;
+                el.innerText = opt.text;
+                categorySelect.appendChild(el);
+            });
+
+            feeDisplay.innerText = `₹${options[0].fee}`;
+
+            categorySelect.onchange = function() {
+                const selectedOpt = categorySelect.options[categorySelect.selectedIndex];
+                feeDisplay.innerText = `₹${selectedOpt.dataset.fee}`;
+            };
+        }
+
+        // Razorpay Payment & Form Submission Handling
+        function handleRegistration(e) {
+            e.preventDefault();
+
+            const categorySelect = document.getElementById('categorySelect');
+            const selectedOpt = categorySelect.options[categorySelect.selectedIndex];
+            
+            if (!selectedOpt || !selectedOpt.dataset.fee) {
+                alert("Please select a valid category.");
+                return;
+            }
+
+            const amount = parseInt(selectedOpt.dataset.fee) * 100; // In paise
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            const options = {
+                "key": RAZORPAY_KEY,
+                "amount": amount,
+                "currency": "INR",
+                "name": "Green Life Marathon 2026",
+                "description": selectedOpt.value,
+                "prefill": {
+                    "name": fullName,
+                    "email": email,
+                    "contact": phone
+                },
+                "theme": {
+                    "color": "#1b5e20"
+                },
+                "handler": function (response) {
+                    saveRegistrationData(response.razorpay_payment_id);
+                }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+        }
+
+        // Send Data to Google Apps Script
+        function saveRegistrationData(paymentId) {
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerText = "Saving Registration...";
+            submitBtn.disabled = true;
+
+            const payload = {
+                fullName: document.getElementById('fullName').value,
+                gender: document.getElementById('gender').value,
+                dob: document.getElementById('dob').value,
+                category: document.getElementById('categorySelect').value,
+                tshirtSize: document.getElementById('tshirtSize').value,
+                address: document.getElementById('address').value,
+                phone: document.getElementById('phone').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                email: document.getElementById('email').value,
+                paymentId: paymentId
+            };
+
+            fetch(APPS_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            }).then(() => {
+                alert("Registration Successful! Confirmation email with GLF Registration ID has been sent.");
+                closeRegisterModal();
+                document.getElementById('regForm').reset();
+                submitBtn.innerText = "PROCEED TO PAY";
+                submitBtn.disabled = false;
+            }).catch(err => {
+                alert("Error recording submission, but payment was successful. Please contact support with Payment ID: " + paymentId);
+                submitBtn.innerText = "PROCEED TO PAY";
+                submitBtn.disabled = false;
+            });
+        }
+    </script>
+</body>
+</html>
