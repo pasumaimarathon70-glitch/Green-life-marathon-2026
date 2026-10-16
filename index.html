@@ -3,106 +3,226 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Green Life Marathon 2026</title>
+  <title>Green Life Marathon 2026 | Tiruppur</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <style>
     :root {
-      --bg-gradient: linear-gradient(135deg, #fbfbfb 0%, #f4f5f7 50%, #eaeef2 100%);
+      --bg-ash: #f3f4f6;
       --primary-orange: #ff5e14;
       --orange-hover: #e04b00;
-      --charcoal: #1e252b;
-      --charcoal-light: #2c353e;
-      --sky-accent: #00a8ff;
-      --card-bg: rgba(255, 255, 255, 0.9);
+      --charcoal: #1f2937;
+      --charcoal-light: #374151;
+      --sky-blue: #0284c7;
+      --nature-green: #16a34a;
+      --card-bg: #ffffff;
       --text-main: #111827;
       --text-muted: #4b5563;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-    body { background: var(--bg-gradient); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+    
+    /* Nature Vibe Ash Background with Sun & Trees SVG Silhouette */
+    body {
+      background-color: var(--bg-ash);
+      background-image: 
+        radial-gradient(circle at 85% 12%, rgba(255, 180, 0, 0.25) 0%, rgba(255, 255, 255, 0) 40%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="rgba(22, 163, 74, 0.05)" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,150,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+      background-size: cover, 100% 300px;
+      background-repeat: no-repeat, repeat-x;
+      background-position: top right, bottom;
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-    /* Header */
-    header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.05); padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; }
-    .logo-container { display: flex; align-items: center; gap: 12px; }
-    .logo-img { height: 48px; border-radius: 8px; }
-    .org-title { font-size: 12px; font-weight: 700; color: var(--primary-orange); letter-spacing: 1px; text-transform: uppercase; }
+    /* Top Header */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 2px solid rgba(255, 94, 20, 0.1);
+      padding: 12px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .logo-container { display: flex; align-items: center; gap: 14px; }
+    .logo-badge {
+      background: linear-gradient(135deg, var(--nature-green), var(--primary-orange));
+      color: #fff;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .org-sub { font-size: 11px; font-weight: 800; color: var(--nature-green); letter-spacing: 1px; text-transform: uppercase; }
+    .main-title { font-size: 1.05rem; font-weight: 800; color: var(--charcoal); }
 
     /* Hero Section */
-    .hero { text-align: center; padding: 60px 20px 40px; max-width: 900px; margin: 0 auto; position: relative; }
+    .hero { text-align: center; padding: 50px 20px 30px; max-width: 950px; margin: 0 auto; position: relative; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 94, 20, 0.1);
+      color: var(--primary-orange);
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 15px;
+      border: 1px solid rgba(255, 94, 20, 0.2);
+    }
     .hero h1 { font-size: 2.8rem; font-weight: 800; color: var(--charcoal); letter-spacing: -1px; margin-bottom: 10px; }
     .hero p.tagline { font-size: 1.1rem; color: var(--primary-orange); font-weight: 700; margin-bottom: 25px; }
-    .event-info { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; font-size: 0.95rem; font-weight: 600; color: var(--charcoal-light); }
-    .info-badge { background: #fff; padding: 8px 16px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.05); }
+    
+    .event-info { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 25px; font-size: 0.9rem; font-weight: 700; }
+    .info-badge { background: #fff; padding: 10px 18px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.06); color: var(--charcoal-light); }
 
-    /* Countdown */
-    .countdown-box { display: flex; justify-content: center; gap: 15px; margin: 25px 0 35px; }
-    .time-card { background: var(--charcoal); color: #fff; width: 70px; height: 75px; border-radius: 12px; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 8px 20px rgba(0,0,0,0.15); border-bottom: 3px solid var(--primary-orange); }
-    .time-card span.num { font-size: 1.5rem; font-weight: 800; color: #fff; }
-    .time-card span.label { font-size: 0.65rem; text-transform: uppercase; color: #9ca3af; }
+    /* Countdown Box */
+    .countdown-box { display: flex; justify-content: center; gap: 12px; margin: 20px 0 30px; }
+    .time-card {
+      background: var(--charcoal);
+      color: #fff;
+      width: 72px;
+      height: 75px;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 8px 20px rgba(31, 41, 55, 0.2);
+      border-bottom: 4px solid var(--primary-orange);
+    }
+    .time-card span.num { font-size: 1.6rem; font-weight: 800; color: #fff; line-height: 1.1; }
+    .time-card span.label { font-size: 0.65rem; text-transform: uppercase; color: #9ca3af; font-weight: 600; margin-top: 2px; }
 
-    /* Buttons */
-    .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-    .btn { padding: 14px 28px; border-radius: 12px; font-weight: 700; text-decoration: none; cursor: pointer; border: none; transition: all 0.3s ease; font-size: 0.95rem; }
+    /* Action Buttons */
+    .btn-group { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn { padding: 14px 26px; border-radius: 12px; font-weight: 700; text-decoration: none; cursor: pointer; border: none; transition: all 0.3s ease; font-size: 0.95rem; }
     .btn-primary { background: var(--primary-orange); color: #fff; box-shadow: 0 6px 20px rgba(255, 94, 20, 0.35); }
     .btn-primary:hover { background: var(--orange-hover); transform: translateY(-2px); }
     .btn-secondary { background: var(--charcoal); color: #fff; }
     .btn-secondary:hover { background: var(--charcoal-light); transform: translateY(-2px); }
 
-    /* Sections */
-    section { padding: 50px 20px; max-width: 1000px; margin: 0 auto; }
-    .section-title { text-align: center; font-size: 1.8rem; font-weight: 800; color: var(--charcoal); margin-bottom: 30px; }
+    /* Marathon Action Stills Carousel Section */
+    .stills-section { padding: 30px 0; background: rgba(255,255,255,0.5); border-y: 1px solid rgba(0,0,0,0.05); margin: 30px 0; }
+    .stills-container { overflow: hidden; position: relative; width: 100%; }
+    .stills-track { display: flex; gap: 18px; width: max-content; animation: scrollStills 30s linear infinite; }
+    
+    .still-card {
+      width: 240px;
+      height: 150px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      position: relative;
+      background: var(--charcoal);
+      flex-shrink: 0;
+    }
+    .still-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; transition: opacity 0.3s; }
+    .still-card:hover img { opacity: 1; }
+    .still-caption {
+      position: absolute;
+      bottom: 0;
+      inset-x: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: #fff;
+      padding: 8px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-align: center;
+    }
 
-    /* Auto Sliding Cards for Benefits */
-    .slider-container { overflow: hidden; position: relative; padding: 20px 0; }
-    .slider-track { display: flex; gap: 20px; width: max-content; animation: scroll 25s linear infinite; }
-    .benefit-card { background: #fff; padding: 25px; border-radius: 16px; width: 250px; flex-shrink: 0; box-shadow: 0 6px 20px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05); text-align: center; }
-    .benefit-card h4 { color: var(--primary-orange); margin-bottom: 8px; font-weight: 700; }
-    .benefit-card p { font-size: 0.85rem; color: var(--text-muted); }
-
-    @keyframes scroll {
+    @keyframes scrollStills {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
 
-    /* Modal / Form Styling */
-    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
-    .modal-content { background: #fff; padding: 30px; border-radius: 20px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.2); position: relative; }
-    .close-btn { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
+    /* Benefit Cards Carousel */
+    section { padding: 40px 20px; max-width: 1050px; margin: 0 auto; }
+    .section-title { text-align: center; font-size: 1.8rem; font-weight: 800; color: var(--charcoal); margin-bottom: 25px; }
 
-    .form-group { margin-bottom: 15px; }
-    .form-group label { display: block; font-size: 0.85rem; font-weight: 700; color: var(--charcoal); margin-bottom: 5px; }
-    .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 0.95rem; outline: none; }
-    .form-group input:focus, .form-group select:focus { border-color: var(--primary-orange); }
+    .benefits-container { overflow: hidden; position: relative; padding: 10px 0; }
+    .benefits-track { display: flex; gap: 18px; width: max-content; animation: scrollBenefits 25s linear infinite; }
+    .benefit-card {
+      background: var(--card-bg);
+      padding: 22px;
+      border-radius: 16px;
+      width: 220px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+      border: 1px solid rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    .benefit-card .icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+    .benefit-card h4 { color: var(--primary-orange); margin-bottom: 6px; font-weight: 700; font-size: 1rem; }
+    .benefit-card p { font-size: 0.82rem; color: var(--text-muted); }
 
-    footer { background: var(--charcoal); color: #fff; text-align: center; padding: 30px 20px; margin-top: 50px; font-size: 0.85rem; }
+    @keyframes scrollBenefits {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Modal Styling */
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(6px); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
+    .modal-content { background: #fff; padding: 30px; border-radius: 24px; max-width: 520px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.25); position: relative; }
+    .close-btn { position: absolute; top: 16px; right: 20px; font-size: 1.6rem; cursor: pointer; color: var(--text-muted); font-weight: 800; }
+
+    /* Form Design */
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 700; color: var(--charcoal); margin-bottom: 5px; }
+    .form-group input, .form-group select { width: 100%; padding: 12px; border: 1.5px solid #e5e7eb; border-radius: 10px; font-size: 0.92rem; outline: none; background: #fafafa; }
+    .form-group input:focus, .form-group select:focus { border-color: var(--primary-orange); background: #fff; }
+
+    /* Cash Prize Metallic Card Design */
+    .prize-card-content {
+      background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+      color: #fff;
+      border: 2px solid #f59e0b;
+      text-align: center;
+      border-radius: 20px;
+      padding: 30px 20px;
+      box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
+    }
+    .prize-badge { font-size: 2.5rem; margin-bottom: 10px; display: block; }
+    .prize-amount { font-size: 2.2rem; font-weight: 800; color: #fbbf24; text-shadow: 0 2px 10px rgba(251, 191, 36, 0.3); margin: 10px 0; }
+
+    footer { background: var(--charcoal); color: #9ca3af; text-align: center; padding: 25px 20px; margin-top: 40px; font-size: 0.85rem; }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Top Header with Organization Name & Logo -->
   <header>
     <div class="logo-container">
-      <img src="https://via.placeholder.com/50x50?text=PI+Logo" alt="Pasumai Ingarangal" class="logo-img">
+      <div class="logo-badge">🏃</div>
       <div>
-        <div class="org-title">Pasumai Ingarangal</div>
-        <div style="font-weight:800; font-size: 0.9rem; color:var(--charcoal);">Green Life Marathon</div>
+        <div class="org-sub">Organised by Pasumai Ingarangal</div>
+        <div class="main-title">Green Life Marathon 2026</div>
       </div>
     </div>
   </header>
 
   <!-- Hero Section -->
   <div class="hero">
+    <div class="hero-badge">🌱 Tiruppur Green Marathon Event</div>
     <h1>GREEN LIFE MARATHON 2026</h1>
     <p class="tagline">Run for Health. Run for Nature. Run for a Greener Tomorrow.</p>
     
     <div class="event-info">
       <div class="info-badge"> 15 November 2026</div>
       <div class="info-badge">📍 SUGAN SUGA Medical Center, Thirumurugan Poondi</div>
-      <div class="info-badge" style="color:red;">⏳ Reg. Closes: 05 Nov 2026</div>
+      <div class="info-badge" style="color:#dc2626;">⏳ Reg. Closes: 05 Nov 2026</div>
     </div>
 
-    <!-- Live Countdown -->
+    <!-- Live Countdown Timer -->
     <div class="countdown-box" id="countdown">
       <div class="time-card"><span class="num" id="days">00</span><span class="label">Days</span></div>
       <div class="time-card"><span class="num" id="hours">00</span><span class="label">Hours</span></div>
@@ -117,33 +237,48 @@
     </div>
   </div>
 
+  <!-- Marathon Action Stills Carousel Section -->
+  <div class="stills-section">
+    <div class="stills-container">
+      <div class="stills-track">
+        <div class="still-card"><img src="https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&w=500&q=80" alt="Marathon Run"><div class="still-caption">Energy & Passion</div></div>
+        <div class="still-card"><img src="https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?auto=format&fit=crop&w=500&q=80" alt="Runners Track"><div class="still-caption">Marathon Spirit</div></div>
+        <div class="still-card"><img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=500&q=80" alt="Health & Fitness"><div class="still-caption">Run For Health</div></div>
+        <div class="still-card"><img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=500&q=80" alt="Finish Line"><div class="still-caption">Victory Ahead</div></div>
+        <div class="still-card"><img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=500&q=80" alt="Green Nature"><div class="still-caption">Green Tomorrow</div></div>
+        <!-- Infinite Duplicate Loop -->
+        <div class="still-card"><img src="https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&w=500&q=80" alt="Marathon Run"><div class="still-caption">Energy & Passion</div></div>
+        <div class="still-card"><img src="https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?auto=format&fit=crop&w=500&q=80" alt="Runners Track"><div class="still-caption">Marathon Spirit</div></div>
+      </div>
+    </div>
+  </div>
+
   <!-- Benefits Section -->
   <section>
     <h2 class="section-title">Participant Benefits</h2>
-    <div class="slider-container">
-      <div class="slider-track">
-        <div class="benefit-card"><h4>Official T-Shirt</h4><p>High-quality event running jersey</p></div>
-        <div class="benefit-card"><h4>Finisher Medal</h4><p>Exclusive design finisher medal</p></div>
-        <div class="benefit-card"><h4>Certificate</h4><p>Official participation certificate</p></div>
-        <div class="benefit-card"><h4>Breakfast</h4><p>Healthy breakfast & hydration</p></div>
-        <div class="benefit-card"><h4>Medical Support</h4><p>First aid & medical team on spot</p></div>
-        <!-- Duplicate for Infinite Loop -->
-        <div class="benefit-card"><h4>Official T-Shirt</h4><p>High-quality event running jersey</p></div>
-        <div class="benefit-card"><h4>Finisher Medal</h4><p>Exclusive design finisher medal</p></div>
-        <div class="benefit-card"><h4>Certificate</h4><p>Official participation certificate</p></div>
+    <div class="benefits-container">
+      <div class="benefits-track">
+        <div class="benefit-card"><span class="icon">👕</span><h4>Official T-Shirt</h4><p>High-quality event running jersey</p></div>
+        <div class="benefit-card"><span class="icon">🏅</span><h4>Finisher Medal</h4><p>Exclusive design finisher medal</p></div>
+        <div class="benefit-card"><span class="icon">📜</span><h4>Certificate</h4><p>Official participation certificate</p></div>
+        <div class="benefit-card"><span class="icon">🍲</span><h4>Breakfast</h4><p>Breakfast & hydration</p></div>
+        <div class="benefit-card"><span class="icon">🚑</span><h4>Medical Support</h4><p>First aid & medical team on spot</p></div>
+        <!-- Infinite Duplicate Loop -->
+        <div class="benefit-card"><span class="icon">👕</span><h4>Official T-Shirt</h4><p>High-quality event running jersey</p></div>
+        <div class="benefit-card"><span class="icon">🏅</span><h4>Finisher Medal</h4><p>Exclusive design finisher medal</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Registration Modal -->
+  <!-- Registration Modal Form -->
   <div class="modal" id="regModal">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal('regModal')">&times;</span>
-      <h3 style="margin-bottom:20px; color:var(--charcoal);">Registration Form</h3>
+      <h3 style="margin-bottom:18px; color:var(--charcoal); font-weight:800;">Registration Form</h3>
       <form id="marathonForm">
-        <div class="form-group"><label>Full Name</label><input type="text" id="fullName" required></div>
+        <div class="form-group"><label>Full Name</label><input type="text" id="fullName" placeholder="Enter Full Name" required></div>
         <div class="form-group"><label>Date of Birth</label><input type="date" id="dob" onchange="calculateCategory()" required></div>
-        <div class="form-group"><label>Age (as on 15 Nov 2026)</label><input type="text" id="age" readonly></div>
+        <div class="form-group"><label>Age (as on 15 Nov 2026)</label><input type="text" id="age" placeholder="Auto calculated" readonly></div>
         <div class="form-group">
           <label>Gender</label>
           <select id="gender" onchange="calculateCategory()" required>
@@ -152,13 +287,15 @@
             <option value="Female">Female</option>
           </select>
         </div>
-        <div class="form-group"><label>Mobile Number</label><input type="tel" id="mobile" required></div>
-        <div class="form-group"><label>Email Address</label><input type="email" id="email" required></div>
-        <div class="form-group"><label>Address</label><input type="text" id="address" required></div>
+        
+        <!-- Category Selection Field 바로 மேலே கொண்டுவரப்பட்டது -->
         <div class="form-group">
-          <label>Select Category (Manual Selection)</label>
-          <select id="categorySelect" onchange="updateFee()" required><option value="">Select Category</option></select>
+          <label>Select Category</label>
+          <select id="categorySelect" onchange="updateFee()" required>
+            <option value="">Select Category</option>
+          </select>
         </div>
+
         <div class="form-group">
           <label>T-Shirt Size</label>
           <select id="tshirt" required>
@@ -168,19 +305,26 @@
             <option value="XL">XL</option><option value="XXL">XXL</option>
           </select>
         </div>
-        <div class="form-group"><label>Registration Fee</label><input type="text" id="fee" readonly></div>
+
+        <div class="form-group"><label>Mobile Number</label><input type="tel" id="mobile" placeholder="10-digit Mobile Number" required></div>
+        <div class="form-group"><label>Email Address</label><input type="email" id="email" placeholder="Your Email" required></div>
+        <div class="form-group"><label>Address</label><input type="text" id="address" placeholder="Town / City" required></div>
+        <div class="form-group"><label>Registration Fee</label><input type="text" id="fee" placeholder="₹ Fee" readonly></div>
+        
         <button type="button" class="btn btn-primary" style="width:100%; margin-top:10px;" onclick="startPayment()">PROCEED TO PAYMENT</button>
       </form>
     </div>
   </div>
 
-  <!-- Cash Prize Modal -->
+  <!-- Cash Prize Metallic Modal Design -->
   <div class="modal" id="prizeModal">
-    <div class="modal-content" style="text-align:center;">
-      <span class="close-btn" onclick="closeModal('prizeModal')">&times;</span>
-      <h3 style="color:var(--primary-orange);">TOTAL CASH PRIZE ₹1,50,000</h3>
-      <p style="margin:15px 0; color:var(--text-muted);">Category-wise prize distribution details will be announced soon!</p>
-      <p>Stay tuned and get ready to run!</p>
+    <div class="modal-content prize-card-content">
+      <span class="close-btn" style="color:#fff;" onclick="closeModal('prizeModal')">&times;</span>
+      <span class="prize-badge">🏆</span>
+      <h3 style="color:#f59e0b; font-size:1.1rem; letter-spacing:1px;">GRAND CHAMPIONSHIP</h3>
+      <div class="prize-amount">₹1,50,000</div>
+      <p style="color:#d1d5db; font-size:0.9rem; margin-top:10px;">TOTAL CASH PRIZE POOL</p>
+      <p style="color:#9ca3af; font-size:0.8rem; margin-top:15px; border-top:1px solid rgba(255,255,255,0.1); padding-top:10px;">Category-wise prize details will be announced soon!</p>
     </div>
   </div>
 
@@ -189,7 +333,6 @@
   </footer>
 
   <script>
-    // உங்கள் Apps Script Web App URL சரியாக இணைக்கப்பட்டுள்ளது
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw2eUjpZIxW4fGRuAU_IKU1L26UOBA77CiBoMVZsTIjpvSI24uscf2CENvCPXNYpqh/exec";
 
     // Countdown Timer Logic
@@ -206,7 +349,7 @@
     function openModal(id) { document.getElementById(id).style.display = 'flex'; }
     function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
-    // Manual Category Selection Logic Based on Age & Gender
+    // Corrected Category Selection Logic (45+ Overlap Cleaned Up)
     function calculateCategory() {
       const dobVal = document.getElementById("dob").value;
       const gender = document.getElementById("gender").value;
@@ -232,77 +375,11 @@
         catSelect.innerHTML += `<option value="Kids 4 KM" data-fee="400">Kids 4 KM (₹400)</option>`;
       } else if (age >= 15) {
         if (gender === "Male") {
-          catSelect.innerHTML += `<option value="Men 15+ (8 KM)" data-fee="450">Men 15+ (8 KM) - ₹450</option>`;
           if (age >= 45) {
+            // 45+ வயது ஆண்களுக்கு Men 45+ மற்றும் Open Men மட்டுமே காட்டும்
             catSelect.innerHTML += `<option value="Men 45+ (8 KM)" data-fee="500">Men 45+ (8 KM) - ₹500</option>`;
-          }
-          catSelect.innerHTML += `<option value="Open Men (16 KM)" data-fee="500">Open Men (16 KM) - ₹500</option>`;
-        } else if (gender === "Female") {
-          catSelect.innerHTML += `<option value="Open Women (8 KM)" data-fee="500">Open Women (8 KM) - ₹500</option>`;
-        }
-      }
-    }
-
-    function updateFee() {
-      const select = document.getElementById("categorySelect");
-      const fee = select.options[select.selectedIndex].getAttribute("data-fee");
-      document.getElementById("fee").value = fee ? "₹" + fee : "";
-    }
-
-    // Razorpay Integration & Submission
-    async function startPayment() {
-      const feeVal = document.getElementById("fee").value.replace("₹", "");
-      if (!feeVal) { alert("Please complete all required fields!"); return; }
-
-      const response = await fetch(APPS_SCRIPT_URL, {
-        method: "POST",
-        body: JSON.stringify({ action: "createOrder", amount: feeVal })
-      });
-      const resData = await response.json();
-
-      if (resData.status === "success") {
-        const options = {
-          "key": "rzp_live_Tck0CfQHjRBsYh",
-          "amount": feeVal * 100,
-          "currency": "INR",
-          "name": "Green Life Marathon 2026",
-          "order_id": resData.orderId,
-          "handler": async function (response) {
-            saveData(response.razorpay_payment_id, feeVal);
-          }
-        };
-        const rzp = new Razorpay(options);
-        rzp.open();
-      } else {
-        alert("Payment initialization failed. Please try again.");
-      }
-    }
-
-    async function saveData(paymentId, fee) {
-      const payload = {
-        action: "verifyAndSave",
-        fullName: document.getElementById("fullName").value,
-        dob: document.getElementById("dob").value,
-        age: document.getElementById("age").value,
-        gender: document.getElementById("gender").value,
-        mobile: document.getElementById("mobile").value,
-        email: document.getElementById("email").value,
-        address: document.getElementById("address").value,
-        category: document.getElementById("categorySelect").value,
-        tshirt: document.getElementById("tshirt").value,
-        fee: fee,
-        paymentId: paymentId
-      };
-
-      const res = await fetch(APPS_SCRIPT_URL, { method: "POST", body: JSON.stringify(payload) });
-      const data = await res.json();
-      if (data.status === "success") {
-        alert("Registration Successful!\nYour Registration ID: " + data.regId);
-        location.reload();
-      } else {
-        alert("Error saving data. Please contact support.");
-      }
-    }
-  </script>
-</body>
-</html>
+            catSelect.innerHTML += `<option value="Open Men (16 KM)" data-fee="500">Open Men (16 KM) - ₹500</option>`;
+          } else {
+            // 15 முதல் 44 வயது ஆண்களுக்கு
+            catSelect.innerHTML += `<option value="Men 15+ (8 KM)" data-fee="450">Men 15+ (8 KM) - ₹450</option>`;
+            catSelect.innerHTML += `
