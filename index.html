@@ -8,17 +8,17 @@
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <style>
     :root {
-      --primary-green: #1b4d3e;
-      --accent-green: #2e7d32;
+      --primary-green: #0d3b2e;
+      --accent-green: #155724;
       --light-bg: #f4f7f4;
-      --dark-footer: #1a2522;
+      --dark-footer: #1c2b26;
       --text-main: #1f2937;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
     body { background-color: var(--light-bg); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
 
-    /* Header */
+    /* Top Header - Simplified */
     header {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
@@ -27,40 +27,38 @@
       z-index: 100;
       padding: 12px 5%;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
     .logo-container { display: flex; align-items: center; gap: 12px; }
-    .logo-img { height: 48px; border-radius: 8px; }
-    .nav-links { display: flex; gap: 20px; font-weight: 700; font-size: 0.9rem; }
-    .nav-links a { text-decoration: none; color: var(--primary-green); }
+    .logo-img { height: 48px; border-radius: 6px; }
 
-    /* Hero Section with Provided Image Background */
+    /* Hero Section with Exact Image Background & Overlay Styling */
     .hero {
-      background: linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.35)), 
+      background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.4)), 
                   url('https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&w=1600&q=80');
       background-size: cover;
       background-position: center;
       text-align: center;
-      padding: 60px 20px 80px;
+      padding: 50px 20px 70px;
       position: relative;
     }
 
-    .hero-tree-logo { width: 120px; margin-bottom: 10px; }
+    .hero-tree-logo { width: 110px; margin-bottom: 10px; }
     .hero h1 { font-size: 3rem; font-weight: 800; color: #0d3b2e; letter-spacing: -1px; text-transform: uppercase; margin-bottom: 5px; }
-    .hero p.tagline { font-size: 1.2rem; color: #155724; font-weight: 700; font-style: italic; margin-bottom: 25px; }
+    .hero p.tagline { font-size: 1.15rem; color: #155724; font-weight: 700; font-style: italic; margin-bottom: 25px; }
 
-    .event-info { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 25px; font-weight: 700; }
-    .info-badge { background: #fff; padding: 10px 20px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); color: #0d3b2e; font-size: 0.95rem; }
+    .event-info { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; font-weight: 700; }
+    .info-badge { background: #fff; padding: 10px 20px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); color: #0d3b2e; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; }
 
-    /* Countdown */
-    .countdown-box { display: flex; justify-content: center; gap: 12px; margin: 20px 0 30px; }
+    /* Live Countdown Box */
+    .countdown-box { display: flex; justify-content: center; gap: 12px; margin: 15px 0 25px; }
     .time-card {
       background: var(--primary-green);
       color: #fff;
-      width: 75px;
-      height: 75px;
+      width: 72px;
+      height: 72px;
       border-radius: 12px;
       display: flex;
       flex-direction: column;
@@ -68,17 +66,18 @@
       align-items: center;
       box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     }
-    .time-card span.num { font-size: 1.6rem; font-weight: 800; }
-    .time-card span.label { font-size: 0.65rem; text-transform: uppercase; color: #a3e635; }
+    .time-card span.num { font-size: 1.5rem; font-weight: 800; line-height: 1; }
+    .time-card span.label { font-size: 0.65rem; text-transform: uppercase; color: #a3e635; margin-top: 3px; font-weight: 600; }
 
-    /* Buttons */
-    .btn-container { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 10px; }
+    /* Button Hierarchy */
+    .btn-container { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 15px; }
+    
     .btn-register-large {
       background: #0d3b2e;
       color: #fff;
-      padding: 18px 45px;
+      padding: 16px 45px;
       border-radius: 40px;
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 800;
       border: none;
       cursor: pointer;
@@ -87,25 +86,30 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      text-decoration: none;
     }
     .btn-register-large:hover { background: #155724; transform: scale(1.03); }
-    
-    .btn-prize-sub {
+
+    .sub-btn-group { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .btn-sub {
       background: #ffffff;
       color: #0d3b2e;
-      padding: 10px 25px;
-      border-radius: 20px;
+      padding: 10px 22px;
+      border-radius: 25px;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       border: 2px solid #0d3b2e;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      transition: all 0.2s;
     }
+    .btn-sub:hover { background: #f0fdf4; transform: translateY(-2px); }
 
-    /* About Section (Children's Day Special) */
+    /* About Section (Children's Day Edition) */
     .about-section {
-      max-width: 900px;
-      margin: -30px auto 40px;
+      max-width: 950px;
+      margin: -25px auto 40px;
       background: #ffffff;
       padding: 35px 30px;
       border-radius: 20px;
@@ -113,29 +117,29 @@
       text-align: center;
       position: relative;
       z-index: 10;
-      border-top: 5px solid var(--accent-green);
+      border-top: 5px solid #2e7d32;
     }
     .about-section h2 { font-size: 1.8rem; color: var(--primary-green); margin-bottom: 12px; font-weight: 800; }
-    .about-section p { color: #4b5563; font-size: 1rem; line-height: 1.7; }
+    .about-section p { color: #4b5563; font-size: 0.98rem; line-height: 1.7; }
 
-    /* Benefits Section */
-    .benefits-section { max-width: 1100px; margin: 0 auto 50px; padding: 0 20px; text-align: center; }
-    .benefits-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
+    /* Participant Benefits Grid Section */
+    .benefits-section { max-width: 1150px; margin: 0 auto 50px; padding: 0 20px; text-align: center; }
+    .benefits-grid { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; margin-top: 25px; }
     .benefit-card {
       background: #fff;
       border-radius: 16px;
       overflow: hidden;
       width: 200px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
       border: 1px solid #e5e7eb;
       text-align: center;
       padding-bottom: 15px;
     }
     .benefit-card img { width: 100%; height: 130px; object-fit: cover; }
-    .benefit-card h4 { color: var(--primary-green); font-size: 0.95rem; font-weight: 700; margin: 12px 0 5px; }
+    .benefit-card h4 { color: var(--primary-green); font-size: 0.95rem; font-weight: 700; margin: 12px 0 4px; }
     .benefit-card p { font-size: 0.78rem; color: #6b7280; padding: 0 10px; }
 
-    /* Modal / Form Styling */
+    /* Modal Form Styling */
     .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
     .modal-content { background: #fff; padding: 30px; border-radius: 20px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
     .close-btn { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #6b7280; }
@@ -151,19 +155,14 @@
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Top Header -->
   <header>
     <div class="logo-container">
       <img src="https://via.placeholder.com/50x50?text=PI+Logo" alt="Pasumai Ingarangal" class="logo-img">
       <div>
-        <div style="font-size:11px; font-weight:800; color:var(--accent-green);">GREEN LIFE MARATHON 2026</div>
-        <div style="font-size:0.9rem; font-weight:800; color:var(--primary-green);">Pasumai Ingarangal</div>
+        <div style="font-size:11px; font-weight:800; color:#2e7d32; letter-spacing:0.5px;">GREEN LIFE MARATHON 2026</div>
+        <div style="font-size:0.9rem; font-weight:800; color:var(--primary-green);">Organised by Pasumai Ingarangal</div>
       </div>
-    </div>
-    <div class="nav-links">
-      <a href="#">Home</a>
-      <a href="#about">About</a>
-      <a href="#benefits">Benefits</a>
     </div>
   </header>
 
@@ -186,39 +185,42 @@
       <div class="time-card"><span class="num" id="secs">00</span><span class="label">Secs</span></div>
     </div>
 
-    <!-- Large Register Button & Price Details Below -->
+    <!-- Register Button (Large) & Sub Buttons (Location & Cash Prize) -->
     <div class="btn-container">
       <button class="btn-register-large" onclick="openModal('regModal')">🏃 REGISTER NOW ➔</button>
-      <button class="btn-prize-sub" onclick="openModal('prizeModal')">🏆 CASH PRIZE DETAILS</button>
+      <div class="sub-btn-group">
+        <a href="https://maps.app.goo.gl/7L3ouZKi9iQ6hf8j6?g_st=ac" target="_blank" class="btn-sub">📍 LOCATION (GOOGLE MAPS)</a>
+        <button class="btn-sub" onclick="openModal('prizeModal')">🏆 CASH PRIZE DETAILS</button>
+      </div>
     </div>
   </div>
 
   <!-- About Section (Children's Day Special) -->
-  <div class="about-section" id="about">
+  <div class="about-section">
     <h2>About The Event</h2>
     <p>
-      <strong>Green Life Marathon 2026</strong> celebrates fitness, nature, and community wellness. Special Children's Day edition organized to encourage physical activity, sportsmanship, and environmental awareness among youth and citizens. Join us for a greener tomorrow!
+      <strong>Green Life Marathon 2026</strong> is organized as a special Children's Day edition to foster physical health, active lifestyles, and environmental conservation among our youth and community. Join us in Tiruppur for a powerful run towards a greener future!
     </p>
   </div>
 
-  <!-- Benefits Section -->
-  <div class="benefits-section" id="benefits">
+  <!-- Participant Benefits Section -->
+  <div class="benefits-section">
     <h2 style="color:var(--primary-green); font-size: 1.8rem; font-weight: 800;">Participant Benefits</h2>
     <div class="benefits-grid">
       <div class="benefit-card">
-        <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=300&q=80" alt="T-Shirt">
+        <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=300&q=80" alt="Official T-Shirt">
         <h4>Official T-Shirt</h4>
         <p>High-quality event running jersey</p>
       </div>
       <div class="benefit-card">
-        <img src="https://images.unsplash.com/photo-1578269174936-2709b6aeb913?auto=format&fit=crop&w=300&q=80" alt="Medal">
+        <img src="https://images.unsplash.com/photo-1578269174936-2709b6aeb913?auto=format&fit=crop&w=300&q=80" alt="Finisher Medal">
         <h4>Finisher Medal</h4>
         <p>Exclusive design finisher medal</p>
       </div>
       <div class="benefit-card">
         <img src="https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=300&q=80" alt="Certificate">
         <h4>Certificate</h4>
-        <p>Official participation certificate</p>
+        <p>Offical participation certificate</p>
       </div>
       <div class="benefit-card">
         <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=300&q=80" alt="Breakfast">
@@ -226,7 +228,7 @@
         <p>Healthy breakfast & hydration</p>
       </div>
       <div class="benefit-card">
-        <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=300&q=80" alt="Medical">
+        <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=300&q=80" alt="Medical Support">
         <h4>Medical Support</h4>
         <p>First aid & medical team on spot</p>
       </div>
@@ -251,6 +253,7 @@
           </select>
         </div>
         
+        <!-- Category Selection immediately after DOB/Gender -->
         <div class="form-group">
           <label>Select Category</label>
           <select id="categorySelect" onchange="updateFee()" required>
@@ -290,7 +293,7 @@
   <!-- Footer -->
   <footer>
     <p>Organised by <strong>Pasumai Ingarangal, Karur</strong></p>
-    <p style="margin-top:5px; font-size:0.78rem;">© 2026 Pasumai Ingarangal. All Rights Reserved.</p>
+    <p style="margin-top:6px; font-size:0.78rem;">© 2026 Pasumai Ingarangal. All Rights Reserved.</p>
   </footer>
 
   <script>
@@ -308,111 +311,5 @@
     }, 1000);
 
     function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-
-    // Category Selection Logic
-    function calculateCategory() {
-      const dobVal = document.getElementById("dob").value;
-      const gender = document.getElementById("gender").value;
-      if (!dobVal || !gender) return;
-
-      const dob = new Date(dobVal);
-      const targetDate = new Date("2026-11-15");
-      let age = targetDate.getFullYear() - dob.getFullYear();
-      const m = targetDate.getMonth() - dob.getMonth();
-      if (m < 0 || (m === 0 && targetDate.getDate() < dob.getDate())) { age--; }
-      
-      document.getElementById("age").value = age + " Years";
-      const catSelect = document.getElementById("categorySelect");
-      catSelect.innerHTML = '<option value="">Select Category</option>';
-
-      if (age >= 3 && age < 8) {
-        catSelect.innerHTML += `<option value="Kids 1 KM" data-fee="400">Kids 1 KM (₹400)</option>`;
-      } else if (age >= 8 && age < 10) {
-        catSelect.innerHTML += `<option value="Kids 2 KM" data-fee="400">Kids 2 KM (₹400)</option>`;
-      } else if (age >= 10 && age < 12) {
-        catSelect.innerHTML += `<option value="Kids 3 KM" data-fee="400">Kids 3 KM (₹400)</option>`;
-      } else if (age >= 12 && age < 15) {
-        catSelect.innerHTML += `<option value="Kids 4 KM" data-fee="400">Kids 4 KM (₹400)</option>`;
-      } else if (age >= 15) {
-        if (gender === "Male") {
-          if (age >= 45) {
-            catSelect.innerHTML += `<option value="Men 45+ (8 KM)" data-fee="500">Men 45+ (8 KM) - ₹500</option>`;
-            catSelect.innerHTML += `<option value="Open Men (16 KM)" data-fee="500">Open Men (16 KM) - ₹500</option>`;
-          } else {
-            catSelect.innerHTML += `<option value="Men 15+ (8 KM)" data-fee="450">Men 15+ (8 KM) - ₹450</option>`;
-            catSelect.innerHTML += `<option value="Open Men (16 KM)" data-fee="500">Open Men (16 KM) - ₹500</option>`;
-          }
-        } else if (gender === "Female") {
-          catSelect.innerHTML += `<option value="Open Women (8 KM)" data-fee="500">Open Women (8 KM) - ₹500</option>`;
-        }
-      }
-    }
-
-    function updateFee() {
-      const select = document.getElementById("categorySelect");
-      const fee = select.options[select.selectedIndex].getAttribute("data-fee");
-      document.getElementById("fee").value = fee ? "₹" + fee : "";
-    }
-
-    // Razorpay Integration & Submission
-    async function startPayment() {
-      const feeVal = document.getElementById("fee").value.replace("₹", "");
-      if (!feeVal) { alert("Please complete all required fields!"); return; }
-
-      try {
-        const response = await fetch(APPS_SCRIPT_URL, {
-          method: "POST",
-          body: JSON.stringify({ action: "createOrder", amount: feeVal })
-        });
-        const resData = await response.json();
-
-        if (resData.status === "success") {
-          const options = {
-            "key": "rzp_live_Tck0CfQHjRBsYh",
-            "amount": feeVal * 100,
-            "currency": "INR",
-            "name": "Green Life Marathon 2026",
-            "order_id": resData.orderId,
-            "handler": async function (response) {
-              saveData(response.razorpay_payment_id, feeVal);
-            }
-          };
-          const rzp = new Razorpay(options);
-          rzp.open();
-        } else {
-          alert("Payment initialization failed. Please try again.");
-        }
-      } catch(err) {
-        alert("Server error. Please try again!");
-      }
-    }
-
-    async function saveData(paymentId, fee) {
-      const payload = {
-        action: "verifyAndSave",
-        fullName: document.getElementById("fullName").value,
-        dob: document.getElementById("dob").value,
-        age: document.getElementById("age").value,
-        gender: document.getElementById("gender").value,
-        mobile: document.getElementById("mobile").value,
-        email: document.getElementById("email").value,
-        address: document.getElementById("address").value,
-        category: document.getElementById("categorySelect").value,
-        tshirt: document.getElementById("tshirt").value,
-        fee: fee,
-        paymentId: paymentId
-      };
-
-      const res = await fetch(APPS_SCRIPT_URL, { method: "POST", body: JSON.stringify(payload) });
-      const data = await res.json();
-      if (data.status === "success") {
-        alert("Registration Successful!\nYour Registration ID: " + data.regId);
-        location.reload();
-      } else {
-        alert("Error saving data. Please contact support.");
-      }
-    }
-  </script>
-</body>
-</html>
+    function closeModal(id) { document.getElementById
+              
